@@ -1,4 +1,4 @@
-package com.example.quiz3k.model;
+package com.example.quiz3k.model.dto;
 import jakarta.validation.constraints.NotEmpty;
 
 public class Answer {
