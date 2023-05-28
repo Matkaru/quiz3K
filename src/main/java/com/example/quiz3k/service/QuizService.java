@@ -8,6 +8,10 @@ import com.example.quiz3k.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class QuizService {
 
@@ -26,6 +30,7 @@ public class QuizService {
         return quizRepository.save(quizEntity);
     }
 
-
-
+    public List<String> getAllQuiz(){
+        return quizRepository.findAll().stream().map(x -> x.getQuizName()).collect(Collectors.toList());
+    }
 }

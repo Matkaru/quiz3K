@@ -7,6 +7,8 @@ import com.example.quiz3k.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/quiz")
 public class QuizController {
@@ -23,7 +25,9 @@ public class QuizController {
         return quizService.createQuiz(body.getQuizName());
     }
 
-//    @GetMapping
-//    public
+    @GetMapping
+    public List<String> getAllQuiz(){
+        return quizService.getAllQuiz();
+    }
 
 }
