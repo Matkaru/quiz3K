@@ -21,5 +21,9 @@ public class QuestionEntity {
     @OneToMany(mappedBy = "question")
     private List<AnswerEntity> answers;
 
+    @ManyToOne
+    private QuizEntity quiz;
+
+    @Enumerated
     private QuestionType questionType;
 }
