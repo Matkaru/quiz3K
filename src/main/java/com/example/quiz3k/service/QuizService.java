@@ -1,14 +1,8 @@
 package com.example.quiz3k.service;
-
 import com.example.quiz3k.model.dao.QuizEntity;
-import com.example.quiz3k.model.dto.Quiz;
-import com.example.quiz3k.repository.AnswerRepository;
-import com.example.quiz3k.repository.QuestionRepository;
 import com.example.quiz3k.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
