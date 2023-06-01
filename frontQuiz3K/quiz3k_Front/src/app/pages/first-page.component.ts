@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-first-page',
-  template: `
-    <h1>Witaj na pierwszej stronie!</h1>
-    <p>To jest zawartość pierwszej strony.</p>
-  `
+  templateUrl: './first-page.component.html',
+  styleUrls: ['./first-page.component.css']
+
 })
 export class FirstPageComponent {}

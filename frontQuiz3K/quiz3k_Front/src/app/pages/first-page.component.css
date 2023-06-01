@@ -1,28 +1,27 @@
-img {
-  width: 250px;
-  height: auto;
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+
 }
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   background-color: #f6f4c9;
-}
 
-.header-text {
-  flex-grow: 1;
-  text-align: center;
 }
-
-.logo {
-  width: 150px;
-  height: auto;
-}
-
 .buttons {
   display: flex;
+  justify-content: flex-end;
   gap: 10px;
+
 }
 
 .title {
@@ -34,13 +33,12 @@ img {
   margin: 0;
   line-height: 1.5;
   color: #faf1b2;
-}
 
-.all-page {
-  background-color: #faf1b2;
 }
 
 .start-page-header {
+  display: flex;
+  text-align: center;
   color: #f32049;
   font-size: 100px;
 }
@@ -50,8 +48,10 @@ img {
   width: 30%;
   background-color: #604615;
 }
-
-.description-title {
+.description-title{
   color: #faf1b2;
+}
+.fp{
+
 }
 
