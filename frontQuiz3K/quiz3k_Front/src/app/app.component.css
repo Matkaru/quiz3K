@@ -1,0 +1,57 @@
+img {
+  width: 250px;
+  height: auto;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f6f4c9;
+}
+
+.header-text {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.title {
+  text-align: center;
+  color: #604615;
+}
+
+.description {
+  margin: 0;
+  line-height: 1.5;
+  color: #faf1b2;
+}
+
+.all-page {
+  background-color: #faf1b2;
+}
+
+.start-page-header {
+  color: #f32049;
+  font-size: 100px;
+}
+
+.description-container {
+  text-align: center;
+  width: 30%;
+  background-color: #604615;
+}
+
+.description-title {
+  color: #faf1b2;
+}
+

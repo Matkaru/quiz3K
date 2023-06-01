@@ -1,6 +1,8 @@
 package com.example.quiz3k.model.dto;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
 
+@Data
 public class Answer {
     private Long id;
     @NotEmpty(message = "musi zawierac tekst")
