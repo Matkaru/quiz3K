@@ -1,0 +1,36 @@
+img {
+  width: 200px;
+  height: auto;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #ffffff;
+}
+.logo {
+  width: 150px;
+  height: auto;
+}
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+.title {
+  text-align: center;
+}
+.description {
+  text-align: right;
+}
+
