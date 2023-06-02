@@ -4,16 +4,20 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FirstPageComponent } from './pages/first-page.component';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
+import {FormsModule} from "@angular/forms";
+import {LoginPageComponent} from "./pages/log-In-page/login-page.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstPageComponent,
-    RegistrationPageComponent
+    RegistrationPageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

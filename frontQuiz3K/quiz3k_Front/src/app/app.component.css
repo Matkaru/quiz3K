@@ -37,6 +37,7 @@ img {
 }
 
 .all-page {
+  height: 100%;
   background-color: #faf1b2;
 }
 
@@ -53,5 +54,8 @@ img {
 
 .description-title {
   color: #faf1b2;
+}
+body{
+  height: 100%;
 }
 
