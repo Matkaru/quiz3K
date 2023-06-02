@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/answers")
+@RequestMapping("/api/answers")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AnswerController {
 
     private final AnswerService answerService;
