@@ -19,6 +19,9 @@ import {LoginPageComponent} from "./pages/log-In-page/login-page.component";
     AppRoutingModule,
     FormsModule
   ],
+  exports: [
+    RegistrationPageComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
