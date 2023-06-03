@@ -1,0 +1,53 @@
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #3693f6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f6f4c9;
+
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+}
+
+.title {
+  text-align: center;
+  color: #604615;
+}
+
+.description {
+  margin: 0;
+  line-height: 1.5;
+  color: #faf1b2;
+
+}
+
+.start-page-header {
+  display: flex;
+  text-align: center;
+  color: #f32049;
+  font-size: 100px;
+}
+
+.description-container {
+  text-align: center;
+  width: 30%;
+  background-color: #604615;
+}
+.description-title{
+  color: #faf1b2;
+}
+
+
