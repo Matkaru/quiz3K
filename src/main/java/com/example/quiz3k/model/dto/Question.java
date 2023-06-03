@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Question {
     private Long id;
-    private String questionName;
     private String questionText;
     private List<Answer> answers;
     @Enumerated
@@ -17,15 +16,10 @@ public class Question {
     public Question() {
     }
 
-    public Question(String questionName, String questionText, List<Answer> answers, QuestionType questionType) {
-        this.questionName = questionName;
+    public Question(String questionText, List<Answer> answers, QuestionType questionType) {
         this.questionText = questionText;
         this.answers = answers;
         this.questionType = questionType;
-    }
-
-    public String getQuestionName() {
-        return questionName;
     }
 
     public String getQuestionText() {
