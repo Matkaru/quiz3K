@@ -6,14 +6,15 @@ import com.example.quiz3k.model.UserResponse;
 import com.example.quiz3k.model.dao.ActivationUserEntity;
 import com.example.quiz3k.model.dao.UserEntity;
 import com.example.quiz3k.model.dto.User;
+import com.example.quiz3k.repository.AuthorityRepository;
 import com.example.quiz3k.repository.UserActivationRepository;
 import com.example.quiz3k.repository.UserRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.UUID;
@@ -21,13 +22,23 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
+
 public class UserService {
 
-    private UserRepository userRepository;
-    //private final AuthorityRe pository authorityRepository;
-    // private final PasswordEncoder passwordEncoder;
-    private UserActivationRepository userActivationRepository;
-    // private final EmailService emailService;
+    private final UserRepository userRepository;
+    private final AuthorityRepository authorityRepository;
+
+    private final UserActivationRepository userActivationRepository;
+  //  private final EmailService emailService;
+
+   //@Value("${spring.email.username}")
+   //private String senderEmail;
+@Autowired
+    public UserService(UserRepository userRepository, AuthorityRepository authorityRepository, UserActivationRepository userActivationRepository) {
+        this.userRepository = userRepository;
+        this.authorityRepository = authorityRepository;
+        this.userActivationRepository = userActivationRepository;
+    }
 
     @Transactional
     public void createUser(User user) {
@@ -48,6 +59,15 @@ public class UserService {
                 .user(savedUser)
                 .build()
         );
+ //      //nie stworzone ze względu na brak fremwork - musi zwrócić komunikat
+ //      SimpleMailMessage emailMessage = new SimpleMailMessage();
+ //   emailMessage.setTo(savedUser.getEmail());
+ //   emailMessage.setSubject("Complete Registration!");
+ //   emailMessage.setFrom(senderEmail);
+ //   emailMessage.setText("To confirm your account, please click here : " // aby potwierdzić konto kliknij "tutaj"
+ //            +"http://localhost:8080/api/activate-user/" + newToken.getActivationToken());
+
+ //   emailService.sendEmail(emailMessage);
     }
 
     public List<UserResponse> getAllUsers() {

@@ -1,14 +1,19 @@
 package com.example.quiz3k.model.dao;
 
+
 import com.example.quiz3k.enums.UserType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Table(name = "users")
 @Entity
 @Data
 @Builder
+//@NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity {
 
     @Id
@@ -23,6 +28,7 @@ public class UserEntity {
 
     @Enumerated
     private UserType userType;
+
     private boolean active;
 
     public UserEntity() {
