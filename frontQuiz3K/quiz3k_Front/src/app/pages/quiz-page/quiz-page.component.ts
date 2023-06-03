@@ -22,7 +22,11 @@ export class QuizPageComponent implements OnInit {
   wyloguj() {
 
     this.router.navigate(['/login']);
-  }}
+  }
+
+  ngOnInit(): void {
+  }
+}
 // nie wiem jak to na prawić , już nie miałem czasu tu jest ta smama syytuacja co robiliśmy z tym subscribe
   // ngOnInit(): void {
   //   this.quizService.getAllQuiz().subscribe(
