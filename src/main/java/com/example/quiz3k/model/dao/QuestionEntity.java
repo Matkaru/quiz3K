@@ -1,7 +1,6 @@
 package com.example.quiz3k.model.dao;
 
 import com.example.quiz3k.enums.QuestionType;
-import com.example.quiz3k.model.dto.Answer;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,11 +17,13 @@ public class QuestionEntity {
 
     private String questionText;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(
+            mappedBy = "question",
+            cascade = {CascadeType.ALL})
     private List<AnswerEntity> answers;
 
-    @ManyToOne
-    private QuizEntity quiz;
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private QuizEntity quizId = getQuizId();
 
     @Enumerated
     private QuestionType questionType;

@@ -17,10 +17,12 @@ public class QuizEntity {
 
     private String quizName;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private UserEntity userEntity;
 
-    @OneToMany(mappedBy = "quiz")
+    @OneToMany(
+            mappedBy = "quizId",
+            cascade = {CascadeType.ALL})
     private List<QuestionEntity> questions;
 
 }

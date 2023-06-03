@@ -16,7 +16,7 @@ public class AnswerEntity {
 
     private boolean confirmedAnswer;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "question")
     private QuestionEntity question;
 }
