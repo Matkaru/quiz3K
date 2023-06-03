@@ -1,3 +1,4 @@
+import {Router} from '@angular/router';
 import { Component } from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {User} from "./user.model";
@@ -11,7 +12,7 @@ export class RegistrationPageComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private userService: UserService){
+  constructor(private userService: UserService, private router: Router){
 
   }
 
@@ -21,6 +22,6 @@ export class RegistrationPageComponent {
       password: this.password
     };
     console.log(user);
-    this.userService.createUser(user).subscribe();
+    this.userService.createUser(user).subscribe(x=>{this.router.navigate(['/','logowanie']);});
   }
 }

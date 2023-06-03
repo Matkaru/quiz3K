@@ -7,23 +7,30 @@ import { RegistrationPageComponent } from './pages/registration-page/registratio
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LoginPageComponent} from "./pages/log-In-page/login-page.component";
 import {HttpClientModule} from "@angular/common/http";
+import {QuizPageComponent} from "./pages/quiz-page/quiz-page.component";
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstPageComponent,
     RegistrationPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    QuizPageComponent,
+
+
   ],
   imports: [
     BrowserModule, //dostep do przegladarki?
     AppRoutingModule, //routing
     HttpClientModule, //klientHttp
     ReactiveFormsModule,  //formularze,
-    FormsModule
+    FormsModule,
+    MatTableModule
   ],
   exports: [
-    RegistrationPageComponent
+    RegistrationPageComponent,
+    QuizPageComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
