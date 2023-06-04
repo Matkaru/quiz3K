@@ -6,9 +6,10 @@ import { FirstPageComponent } from './pages/first-page.component';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LoginPageComponent} from "./pages/log-In-page/login-page.component";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {QuizPageComponent} from "./pages/quiz-page/quiz-page.component";
 import { MatTableModule } from '@angular/material/table';
+import {AuthInterceptorService} from "./pages/auth-page/auth-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { MatTableModule } from '@angular/material/table';
     RegistrationPageComponent,
     QuizPageComponent
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

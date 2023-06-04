@@ -9,19 +9,25 @@ import {observableToBeFn} from "rxjs/internal/testing/TestScheduler";
   styleUrls: ['./quiz-page.component.css']
 })
 export class QuizPageComponent implements OnInit {
+  id: number = Number('');
+  quizName: string = '';
   quizList: Quiz[] = [];
 
   constructor(private router: Router, private quizService: QuizService) {
   }
 
   dodajQuiz() {
-
-    this.router.navigate(['/dodaj-quiz']);
+    let quiz: Quiz = {
+      id: this.id,
+      quizName: this.quizName
+    };
+    console.log(quiz);
+    this.quizService.createQuiz(quiz).subscribe(x =>{this.router.navigate(['/','api','/','quiz'])});
   }
 
   wyloguj() {
 
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
 
   ngOnInit(): void {

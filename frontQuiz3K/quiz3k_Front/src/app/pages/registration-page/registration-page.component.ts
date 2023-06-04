@@ -1,18 +1,22 @@
 import {Router} from '@angular/router';
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {User} from "./user.model";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-registration-page',
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.css']
 })
-export class RegistrationPageComponent {
+export class RegistrationPageComponent implements OnInit{
   email: string = '';
   password: string = '';
+  // @ts-ignore
+  signupForm: FormGroup;
 
-  constructor(private userService: UserService, private router: Router){
+
+  constructor(private userService: UserService, private router: Router) {
 
   }
 
@@ -22,6 +26,19 @@ export class RegistrationPageComponent {
       password: this.password
     };
     console.log(user);
-    this.userService.createUser(user).subscribe(x=>{this.router.navigate(['/','logowanie']);});
+    this.userService.createUser(user).subscribe(x => {
+      this.router.navigate(['/', 'logowanie']);
+    });
+  }
+
+  ngOnInit() {
+    this.signupForm = new FormGroup({
+      'userData': new FormGroup({
+        'email': new FormControl(null, [Validators.required, Validators.email])
+      })
+    });
+    this.signupForm.statusChanges.subscribe(
+      (status) => console.log(status)
+    );
   }
 }

@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: FirstPageComponent },
   { path: 'rejestracja', component: RegistrationPageComponent },
   { path: 'logowanie', component: LoginPageComponent},
-  { path: 'quizy', component: QuizPageComponent },
+  { path: 'quiz', component: QuizPageComponent },
 
 ];
 
