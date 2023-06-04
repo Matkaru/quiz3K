@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {User} from "../pages/registration-page/user.model";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,12 +17,15 @@ export class UserService {
     return this.http.post<void>(`${this.apiUrl}`, user);
   }
 
-  getAllUsers(): Observable<User[]> {
+  getAllUsers(user: User): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}`);
   }
 
-  getUser(): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}-user`);
+  getUser(user: User): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}-user`,
+      {
+        headers: {'Authorization': 'Basic ' + btoa(user.email + ":" + user.password)}
+      });
   }
 
   activateUser(confirmationToken: string): Observable<void> {
