@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {User} from "./user.model";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../auth-page/auth.service";
 
 @Component({
   selector: 'app-registration-page',
@@ -16,7 +17,7 @@ export class RegistrationPageComponent implements OnInit{
   signupForm: FormGroup;
 
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
 
   }
 
@@ -26,7 +27,8 @@ export class RegistrationPageComponent implements OnInit{
       password: this.password
     };
     console.log(user);
-    this.userService.createUser(user).subscribe(x => {
+    this.authService.logout();
+    this.authService.createNewUser(user).subscribe(x => {
       this.router.navigate(['/', 'logowanie']);
     });
   }
@@ -34,7 +36,8 @@ export class RegistrationPageComponent implements OnInit{
   ngOnInit() {
     this.signupForm = new FormGroup({
       'userData': new FormGroup({
-        'email': new FormControl(null, [Validators.required, Validators.email])
+        'mail': new FormControl(),
+        'password': new FormControl()
       })
     });
     this.signupForm.statusChanges.subscribe(

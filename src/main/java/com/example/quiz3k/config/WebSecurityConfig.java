@@ -23,12 +23,12 @@ public class WebSecurityConfig {
         httpSecurity.authorizeHttpRequests(
                 (request -> request
                         .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/users").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/rejestracja").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/users").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/users-user").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/quiz").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/quiz").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/users/info").authenticated())
         );
 
