@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Table(name = "users")
 @Entity
 @Data
@@ -30,6 +32,9 @@ public class UserEntity {
     private UserType userType;
 
     private boolean active;
+
+    @ManyToMany
+    private List<AuthorityEntity> authorities;
 
     public UserEntity() {
 

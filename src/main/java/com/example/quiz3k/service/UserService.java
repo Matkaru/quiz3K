@@ -12,7 +12,7 @@ import com.example.quiz3k.repository.UserRepository;
 import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -29,16 +29,19 @@ public class UserService {
     private final AuthorityRepository authorityRepository;
 
     private final UserActivationRepository userActivationRepository;
+
+    private final PasswordEncoder passwordEncoder;
   //  private final EmailService emailService;
 
    //@Value("${spring.email.username}")
    //private String senderEmail;
 @Autowired
-    public UserService(UserRepository userRepository, AuthorityRepository authorityRepository, UserActivationRepository userActivationRepository) {
+    public UserService(UserRepository userRepository, AuthorityRepository authorityRepository, UserActivationRepository userActivationRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.authorityRepository = authorityRepository;
         this.userActivationRepository = userActivationRepository;
-    }
+        this.passwordEncoder = passwordEncoder;
+}
 
     @Transactional
     public void createUser(User user) {
@@ -48,7 +51,7 @@ public class UserService {
         });
         Function<User, UserEntity> convertDtoToDao = (User newUser) -> UserEntity.builder()
                 .email(user.getEmail())
-                .password(user.getPassword())
+                .password(passwordEncoder.encode(user.getPassword()))
                 .login(user.getEmail())
                 .build();
 

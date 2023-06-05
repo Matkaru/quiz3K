@@ -6,8 +6,8 @@
 </head>
 <body>
 <form>
-  <input type="text" name="email" placeholder="Email">
-  <input type="password" name="password" placeholder="Hasło">
+  <input type="text" name="email" [(ngModel)]="email" placeholder="Email">
+  <input type="password" name="password" [(ngModel)]="password" placeholder="Hasło">
   <button (click)="logInUser()">Zaloguj</button>
 </form>
 </body>
