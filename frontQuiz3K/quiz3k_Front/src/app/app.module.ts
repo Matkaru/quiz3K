@@ -11,6 +11,7 @@ import {QuizPageComponent} from "./pages/quiz-page/quiz-page.component";
 import { MatTableModule } from '@angular/material/table';
 import {AuthInterceptorService} from "./pages/auth-page/auth-interceptor.service";
 import {MatInputModule} from "@angular/material/input";
+// import { NewQuizComponent } from './pages/quiz-page/new-quiz/new-quiz.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {MatInputModule} from "@angular/material/input";
     RegistrationPageComponent,
     LoginPageComponent,
     QuizPageComponent,
+    // NewQuizComponent,
 
 
   ],

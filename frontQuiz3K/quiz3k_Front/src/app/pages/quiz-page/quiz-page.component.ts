@@ -4,6 +4,7 @@ import {Quiz} from "./quiz.model";
 import {QuizService} from "../../service/quiz.service";
 import {observableToBeFn} from "rxjs/internal/testing/TestScheduler";
 import {AuthService} from "../auth-page/auth.service";
+import {HttpHeaders} from '@angular/common/http';
 
 
 @Component({
@@ -22,12 +23,13 @@ export class QuizPageComponent implements OnInit {
 
   dodajQuiz() {
     let quiz: Quiz = {
-      id: this.id,
+      id: null,
       quizName: this.quizName
     };
     console.log(quiz);
     this.quizService.createQuiz(quiz).subscribe(x => {
       this.router.navigate(['/', 'api', '/', 'quiz'])
+      window.location.reload();
     });
   }
 
@@ -38,7 +40,7 @@ export class QuizPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.quizList = [
-      { id: this.id, quizName: this.quizName },
+      {id: this.id, quizName: this.quizName},
     ];
     this.loadQuizList();
   }
@@ -54,7 +56,24 @@ export class QuizPageComponent implements OnInit {
       }
     );
   }
+
+  edytujQuiz(quiz) {
+
+  }
+
+  usunQuiz(quizId: number) {
+    if (this.authService.isLoggedUser()) {
+      this.quizService.deleteQuiz(quizId).subscribe(
+        () => {
+          this.loadQuizList();
+        },
+        (error: any) => {
+          console.error('Wystąpił błąd podczas usuwania quizu:', error);
+        }
+      );
+    } else {
+      console.log("Użytkownik nie jest uwierzytelniony, podejmij odpowiednie działania");
+    }
+  }
+
 }
-
-
-

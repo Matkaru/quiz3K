@@ -5,7 +5,6 @@ import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {User} from "../registration-page/user.model";
 
-
 @Injectable({
   providedIn: 'root'
 })

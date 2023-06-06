@@ -19,4 +19,8 @@ public class Quiz {
 
     private List<Answer> answers;
 
+    public Quiz(Long id, String quizName) {
+        this.id = id;
+        this.quizName = quizName;
+    }
 }

@@ -38,3 +38,21 @@ button{
   border-radius: 5px;
   font-size: 16px;
 }
+.edit-button{
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #3693f6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+}
+.action-column{
+  position: absolute;
+  right: 0;
+  margin: 10px;
+}
+.text-right{
+  text-align: right;
+}
+

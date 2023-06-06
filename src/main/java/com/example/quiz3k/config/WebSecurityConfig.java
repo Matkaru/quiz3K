@@ -28,8 +28,13 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/users-user").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/quiz").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/quiz").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/quiz/{id}").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/users/info").authenticated())
+                        .requestMatchers(HttpMethod.GET, "/users/info").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/answers").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/answers").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/answers/{id}").authenticated()
+                )
         );
 
         return httpSecurity.build();

@@ -12,7 +12,7 @@
 </header>
 
 <h1>Strona quizów</h1>
-
+<div><input type="text" id="nazwaQuizu" [(ngModel)]="quizName" name="nazwaQuizu"></div>
 <div class="button-group">
   <button (click)="dodajQuiz()">Dodaj nowy quiz</button>
 </div>
@@ -20,19 +20,30 @@
 <h2>Lista quizów:</h2>
 <table mat-table [dataSource]="quizList" class="mat-elevation-z8">
   <ng-container matColumnDef="lp">
-    <th mat-header-cell *matHeaderCellDef>Lp.</th>
-    <td mat-cell *matCellDef="let quiz; let i = index">{{ i + 1 }}</td>
-
-
+    <th mat-header-cell *matHeaderCellDef>ID.</th>
+    <td mat-cell *matCellDef="let quiz">{{ quiz.id }}</td>
   </ng-container>
 
   <ng-container matColumnDef="nazwa">
     <th mat-header-cell *matHeaderCellDef>Nazwa quizu</th>
-    <td mat-cell *matCellDef="let quiz; let i = index">{{ quiz }}</td>
+    <td mat-cell *matCellDef="let quiz">{{ quiz.quizName }}</td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="['lp', 'nazwa']"></tr>
-  <tr mat-row *matRowDef="let quiz; columns: ['lp', 'nazwa'];"></tr>
+  <ng-container matColumnDef="actions" >
+    <th mat-header-cell *matHeaderCellDef class="text-right"></th>
+    <td mat-cell *matCellDef="let quiz" class="text-right">
+      <button (click)="edytujQuiz(quiz)" class="edit-button">Edytuj</button>
+      <button (click)="usunQuiz(quiz.id)" class="delete-button">Usuń</button>
+    </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="['lp', 'nazwa', 'actions' ]"></tr>
+  <tr mat-row *matRowDef="let quiz; columns: ['lp', 'nazwa', 'actions'];"></tr>
+
+  <div class="button-group">
+    <button (click)="dodajQuiz()">Dodaj nowy quiz</button>
+  </div>
 
 </table>
 </body>
