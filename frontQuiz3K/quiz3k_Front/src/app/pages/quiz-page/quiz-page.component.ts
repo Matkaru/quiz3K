@@ -3,6 +3,9 @@ import {Router} from '@angular/router';
 import {Quiz} from "./quiz.model";
 import {QuizService} from "../../service/quiz.service";
 import {observableToBeFn} from "rxjs/internal/testing/TestScheduler";
+import {AuthService} from "../auth-page/auth.service";
+
+
 @Component({
   selector: 'app-quiz-page',
   templateUrl: './quiz-page.component.html',
@@ -13,8 +16,9 @@ export class QuizPageComponent implements OnInit {
   quizName: string = '';
   quizList: Quiz[] = [];
 
-  constructor(private router: Router, private quizService: QuizService) {
+  constructor(private router: Router, private quizService: QuizService, private authService: AuthService) {
   }
+
 
   dodajQuiz() {
     let quiz: Quiz = {
@@ -22,27 +26,35 @@ export class QuizPageComponent implements OnInit {
       quizName: this.quizName
     };
     console.log(quiz);
-    this.quizService.createQuiz(quiz).subscribe(x =>{this.router.navigate(['/','api','/','quiz'])});
+    this.quizService.createQuiz(quiz).subscribe(x => {
+      this.router.navigate(['/', 'api', '/', 'quiz'])
+    });
   }
 
   wyloguj() {
-
+    this.authService.logout();
     this.router.navigate(['']);
   }
 
   ngOnInit(): void {
+    this.quizList = [
+      { id: this.id, quizName: this.quizName },
+    ];
+    this.loadQuizList();
+  }
+
+  private loadQuizList() {
+    this.quizService.getAllQuiz().subscribe(
+      (quizzes: Quiz[]) => {
+        console.log(quizzes);
+        this.quizList = quizzes;
+      },
+      (error: any) => {
+        console.error('Wystąpił błąd podczas pobierania listy quizów:', error);
+      }
+    );
   }
 }
-// nie wiem jak to na prawić , już nie miałem czasu tu jest ta smama syytuacja co robiliśmy z tym subscribe
-  // ngOnInit(): void {
-  //   this.quizService.getAllQuiz().subscribe(
-  //     (quizzes: Quiz[] => {
-  //       this.quizList = quizzes;
-  //     },
-  //     (error: any) => {
-  //       console.error('Wystąpił błąd podczas pobierania listy quizów:', error);
-  //     }
-  //   );
-  // }
+
 
 

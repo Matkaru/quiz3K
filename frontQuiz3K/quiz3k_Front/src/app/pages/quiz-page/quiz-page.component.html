@@ -23,15 +23,17 @@
     <th mat-header-cell *matHeaderCellDef>Lp.</th>
     <td mat-cell *matCellDef="let quiz; let i = index">{{ i + 1 }}</td>
 
+
   </ng-container>
 
   <ng-container matColumnDef="nazwa">
     <th mat-header-cell *matHeaderCellDef>Nazwa quizu</th>
-    <td mat-cell *matCellDef="let quiz">{{ quiz.quizName }}</td>
+    <td mat-cell *matCellDef="let quiz; let i = index">{{ quiz }}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="['lp', 'nazwa']"></tr>
-  <tr mat-row *matRowDef="let row; columns: ['lp', 'nazwa'];"></tr>
+  <tr mat-row *matRowDef="let quiz; columns: ['lp', 'nazwa'];"></tr>
+
 </table>
 </body>
 </html>

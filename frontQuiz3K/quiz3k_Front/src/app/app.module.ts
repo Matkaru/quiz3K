@@ -10,6 +10,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {QuizPageComponent} from "./pages/quiz-page/quiz-page.component";
 import { MatTableModule } from '@angular/material/table';
 import {AuthInterceptorService} from "./pages/auth-page/auth-interceptor.service";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {AuthInterceptorService} from "./pages/auth-page/auth-interceptor.service
     HttpClientModule, //klientHttp
     ReactiveFormsModule,  //formularze,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    MatInputModule,
   ],
   exports: [
     RegistrationPageComponent,
