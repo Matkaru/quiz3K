@@ -1,1 +1,16 @@
-<p>add-question-to-quiz works!</p>
+<h1>Dodaj pytania do quizu</h1>
+
+<div>
+  <h2>Nazwa quizu: {{ quizName }}</h2>
+</div>
+
+<div>
+  <h2>Lista pytań:</h2>
+  <ul>
+    <li *ngFor="let question of questions">{{ question }}</li>
+  </ul>
+</div>
+
+<div>
+  <button (click)="addNewQuestion()">Dodaj nowe pytanie</button>
+</div>

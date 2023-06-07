@@ -29,4 +29,9 @@ export class QuizService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put(url, quiz, { headers: headers });
   }
+
+  getQuizName(quizId: string): Observable<{ name: string }> {
+    const url = `${this.apiUrl}/api/quiz/${quizId}`;
+    return this.http.get<{ name: string }>(url);
+  }
 }
