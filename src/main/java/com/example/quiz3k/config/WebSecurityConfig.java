@@ -8,6 +8,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -29,6 +32,8 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/users-user").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/quiz").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/quiz").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/quiz/{id}").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/quiz/{id}").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/quiz/{id}").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/users/info").authenticated()
