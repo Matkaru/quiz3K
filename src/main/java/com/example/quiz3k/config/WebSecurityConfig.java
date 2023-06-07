@@ -16,7 +16,8 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
 
-        httpSecurity.csrf(csrf -> csrf.disable());
+        httpSecurity
+                .csrf(csrf -> csrf.disable());
 //        httpSecurity.formLogin(form -> form.permitAll());
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.cors(Customizer.withDefaults());
@@ -44,6 +45,7 @@ public class WebSecurityConfig {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
 
 }
 

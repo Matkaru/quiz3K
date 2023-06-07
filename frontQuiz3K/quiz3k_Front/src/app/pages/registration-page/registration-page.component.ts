@@ -4,6 +4,7 @@ import {UserService} from "../../service/user.service";
 import {User} from "./user.model";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth-page/auth.service";
+import {timer} from "rxjs";
 
 @Component({
   selector: 'app-registration-page',
@@ -11,13 +12,15 @@ import {AuthService} from "../auth-page/auth.service";
   styleUrls: ['./registration-page.component.css']
 })
 export class RegistrationPageComponent implements OnInit{
+
+  errorMessage: string | null = null;
   email: string = '';
   password: string = '';
-  // @ts-ignore
   signupForm: FormGroup;
+  userExists: boolean = false;
+  showSuccessMessage: boolean = false;
 
-
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private userService: UserService, private router: Router) {
 
   }
 
@@ -26,10 +29,24 @@ export class RegistrationPageComponent implements OnInit{
       email: this.email,
       password: this.password
     };
-    console.log(user);
-    this.authService.logout();
-    this.authService.createNewUser(user).subscribe(x => {
-      this.router.navigate(['/', 'logowanie']);
+
+    this.userService.getAllUsers(user).subscribe(users => {
+      if (users.some(u => u.email === user.email)) {
+        this.userExists = true;
+        console.log("Użytkownik już istnieje");
+      } else {
+        this.authService.logout();
+        this.authService.createNewUser(user).subscribe(() => {
+          this.showSuccessMessage = true;
+          timer(5000).subscribe(() => {
+            this.showSuccessMessage = false;
+            this.router.navigate(['/', 'logowanie']);
+          });
+          },
+          (error: any) => {
+            this.errorMessage = error;
+          });
+      }
     });
   }
 
