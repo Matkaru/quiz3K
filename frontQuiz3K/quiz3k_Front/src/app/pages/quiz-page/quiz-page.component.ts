@@ -63,6 +63,7 @@ export class QuizPageComponent implements OnInit {
   }
 
   editQuiz(quiz) {
+    this.editedQuizId = quiz.id;
     this.editedQuizName = quiz.quizName;
   }
   updateQuizName(quizId: number) {
