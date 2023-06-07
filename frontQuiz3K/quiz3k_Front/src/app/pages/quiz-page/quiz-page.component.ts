@@ -18,6 +18,9 @@ export class QuizPageComponent implements OnInit {
   quizList: Quiz[] = [];
   deleteConfirmation: boolean = false;
   quizToDeleteId: number | null = null;
+  editedQuizName: string = '';
+  editedQuizId: number | null = null;
+
 
   constructor(private router: Router, private quizService: QuizService, private authService: AuthService) {
   }
@@ -60,7 +63,17 @@ export class QuizPageComponent implements OnInit {
   }
 
   editQuiz(quiz) {
-
+    this.editedQuizName = quiz.quizName;
+  }
+  updateQuizName(quizId: number) {
+    const updatedQuiz = this.quizList.find(quiz => quiz.id === quizId);
+    if (updatedQuiz) {
+      updatedQuiz.quizName = this.editedQuizName;
+      this.quizService.updateQuiz(updatedQuiz).subscribe(() => {
+        this.loadQuizList();
+      });
+      this.resetForm();
+    }
   }
 
   deleteQuiz(quizId: number) {
@@ -79,6 +92,11 @@ export class QuizPageComponent implements OnInit {
   cancelDelete() {
     this.deleteConfirmation = false;
     this.quizToDeleteId = null;
+    this.editedQuizName = '';
+  }
+  resetForm() {
+    this.editedQuizId = null;
+    this.editedQuizName = '';
   }
 
   confirmDelete(){
@@ -94,5 +112,10 @@ export class QuizPageComponent implements OnInit {
         }
       );
     }
+  }
+
+  cancelEdit() {
+    this.editedQuizId = null;
+    this.editedQuizName = '';
   }
 }

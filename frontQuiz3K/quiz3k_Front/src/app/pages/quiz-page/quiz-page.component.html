@@ -12,7 +12,9 @@
 </header>
 
 <h1>Strona quizów</h1>
-<div><input type="text" id="nazwaQuizu" [(ngModel)]="quizName" name="nazwaQuizu"></div>
+<div>
+  <input type="text" id="nazwaQuizu" [(ngModel)]="quizName" name="nazwaQuizu">
+</div>
 <div class="button-group">
   <button (click)="addQuiz()">Dodaj nowy quiz</button>
 </div>
@@ -33,25 +35,31 @@
 
   <ng-container matColumnDef="nazwa">
     <th mat-header-cell *matHeaderCellDef>Nazwa quizu</th>
-    <td mat-cell *matCellDef="let quiz">{{ quiz.quizName }}</td>
+    <td mat-cell *matCellDef="let quiz">
+      <ng-container *ngIf="editedQuizId === quiz.id; else quizNameDisplay">
+        <input type="text" [(ngModel)]="editedQuizName">
+      </ng-container>
+      <ng-template #quizNameDisplay>{{ quiz.quizName }}</ng-template>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef class="text-right"></th>
     <td mat-cell *matCellDef="let quiz" class="text-right">
-      <button (click)="editQuiz(quiz)" class="edit-button">Edytuj</button>
-      <button (click)="deleteQuiz(quiz.id)" class="delete-button">Usuń</button>
+      <ng-container *ngIf="editedQuizId !== quiz.id; else editButtons">
+        <button (click)="editQuiz(quiz)" class="table-button">Edytuj</button>
+      </ng-container>
+      <ng-template #editButtons>
+        <button (click)="updateQuizName(quiz.id)" class="table-button">Zapisz</button>
+        <button (click)="cancelEdit()" class="table-button">Anuluj</button>
+      </ng-template>
+      <button routerLink="/add-question-to-quiz" class="table-button">Uzupełnij</button>
+      <button (click)="deleteQuiz(quiz.id)" class="table-button">Usuń</button>
     </td>
   </ng-container>
 
-
-  <tr mat-header-row *matHeaderRowDef="['lp', 'nazwa', 'actions' ]"></tr>
-  <tr mat-row *matRowDef="let quiz; columns: ['lp', 'nazwa', 'actions'];"></tr>
-
-  <div class="button-group">
-    <button (click)="addQuiz()">Dodaj nowy quiz</button>
-  </div>
-
+  <tr mat-header-row *matHeaderRowDef="['lp', 'nazwa', 'actions']"></tr>
+  <tr mat-row *matRowDef="let quiz; columns: ['lp', 'nazwa', 'actions']"></tr>
 </table>
 
 </body>

@@ -24,5 +24,9 @@ export class QuizService {
   deleteQuiz(quizId: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.apiUrl}/${quizId}`);
   }
-
+  updateQuiz(quiz: Quiz): Observable<any> {
+    const url = `${this.apiUrl}/${quiz.id}`; // URL do zaktualizowania konkretnego quizu
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put(url, quiz, { headers: headers });
+  }
 }
