@@ -33,7 +33,7 @@ export class RegistrationPageComponent implements OnInit{
     this.userService.getAllUsers(user).subscribe(users => {
       if (users.some(u => u.email === user.email)) {
         this.userExists = true;
-        console.log("Użytkownik już istnieje");
+        console.log("The user already exists");
       } else {
         this.authService.logout();
         this.authService.createNewUser(user).subscribe(() => {

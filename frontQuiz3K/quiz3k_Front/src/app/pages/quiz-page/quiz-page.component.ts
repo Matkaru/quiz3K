@@ -16,12 +16,14 @@ export class QuizPageComponent implements OnInit {
   id: number = Number('');
   quizName: string = '';
   quizList: Quiz[] = [];
+  deleteConfirmation: boolean = false;
+  quizToDeleteId: number | null = null;
 
   constructor(private router: Router, private quizService: QuizService, private authService: AuthService) {
   }
 
 
-  dodajQuiz() {
+  addQuiz() {
     let quiz: Quiz = {
       id: null,
       quizName: this.quizName
@@ -33,7 +35,7 @@ export class QuizPageComponent implements OnInit {
     });
   }
 
-  wyloguj() {
+  logout() {
     this.authService.logout();
     this.router.navigate(['']);
   }
@@ -52,28 +54,45 @@ export class QuizPageComponent implements OnInit {
         this.quizList = quizzes;
       },
       (error: any) => {
-        console.error('Wystąpił błąd podczas pobierania listy quizów:', error);
+        console.error('An error occurred while downloading the quiz list:', error);
       }
     );
   }
 
-  edytujQuiz(quiz) {
+  editQuiz(quiz) {
 
   }
 
-  usunQuiz(quizId: number) {
+  deleteQuiz(quizId: number) {
     if (this.authService.isLoggedUser()) {
-      this.quizService.deleteQuiz(quizId).subscribe(
-        () => {
-          this.loadQuizList();
-        },
-        (error: any) => {
-          console.error('Wystąpił błąd podczas usuwania quizu:', error);
-        }
-      );
+      this.deleteConfirmation = true;
+      this.quizToDeleteId = quizId;
+      // this.quizService.deleteQuiz(quizId).subscribe(
+      //   () => {
+      //     this.loadQuizList();
+      // );
     } else {
-      console.log("Użytkownik nie jest uwierzytelniony, podejmij odpowiednie działania");
+      console.log("The user is not authenticated");
     }
   }
 
+  cancelDelete() {
+    this.deleteConfirmation = false;
+    this.quizToDeleteId = null;
+  }
+
+  confirmDelete(){
+    if (this.quizToDeleteId) {
+      this.quizService.deleteQuiz(this.quizToDeleteId).subscribe(
+        () => {
+          this.loadQuizList();
+          this.deleteConfirmation = false;
+          this.quizToDeleteId = null;
+        },
+        (error: any) => {
+          console.error('An error occurred while deleting the quiz:', error);
+        }
+      );
+    }
+  }
 }
