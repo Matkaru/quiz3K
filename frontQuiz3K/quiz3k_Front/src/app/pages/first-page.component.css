@@ -11,8 +11,9 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background-color: #f6f4c9;
+  padding: 20px;
+  background-color: #69ea14;
+
 
 }
 .buttons {
@@ -44,10 +45,23 @@ button {
 .description-container {
   text-align: center;
   width: 30%;
-  background-color: #604615;
+  background-color: #286015;
+
 }
 .description-title{
   color: #faf1b2;
+}
+.aside{
+  width: 370px;
+}
+.mit{
+  text-align: center;
+}
+.all-photos{
+  text-align: center;
+}
+.all-text{
+  text-align: center;
 }
 
 
