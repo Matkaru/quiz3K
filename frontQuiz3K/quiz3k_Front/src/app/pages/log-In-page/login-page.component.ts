@@ -1,5 +1,5 @@
 import {Router} from '@angular/router';
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {User} from "../registration-page/user.model";
 import {AuthService} from "../auth-page/auth.service";
 
@@ -11,8 +11,9 @@ import {AuthService} from "../auth-page/auth.service";
 export class LoginPageComponent {
   email: string = '';
   password: string = '';
+  errorMessage: string = '';
 
-  constructor(private authLogin: AuthService, private router: Router){
+  constructor(private authLogin: AuthService, private router: Router) {
   }
 
   logInUser() {
@@ -20,7 +21,14 @@ export class LoginPageComponent {
       email: this.email,
       password: this.password
     };
-    console.log(user);
-    this.authLogin.login(user.email, user.password).subscribe(x =>{this.router.navigate(['/','quiz']);});
+
+    this.authLogin.login(user.email, user.password).subscribe(
+      () => {
+        this.router.navigate(['/', 'quiz']);
+      },
+      (error) => {
+        this.errorMessage = 'Nieprawidłowy adres e-mail lub hasło.';
+      }
+    );
   }
 }
