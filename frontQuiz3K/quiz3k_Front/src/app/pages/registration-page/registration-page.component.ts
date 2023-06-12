@@ -16,6 +16,7 @@ export class RegistrationPageComponent implements OnInit{
   errorMessage: string | null = null;
   email: string = '';
   password: string = '';
+  userType: string = '';
   signupForm: FormGroup;
   userExists: boolean = false;
   showSuccessMessage: boolean = false;
@@ -25,9 +26,16 @@ export class RegistrationPageComponent implements OnInit{
   }
 
   registerUser() {
-    let user: User = {
+
+    if (this.userType === '') {
+      this.errorMessage = 'Wybierz typ użytkownika.';
+      return;
+    }
+
+    let user: { password: string; userType: string; email: string } = {
       email: this.email,
-      password: this.password
+      password: this.password,
+      userType: this.userType,
     };
 
     this.userService.getAllUsers(user).subscribe(users => {
