@@ -22,14 +22,11 @@ public class WebSecurityConfig {
 
         httpSecurity
                 .csrf(csrf -> csrf.disable());
-//        httpSecurity.formLogin(form -> form.permitAll());
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.cors(Customizer.withDefaults());
         httpSecurity.authorizeHttpRequests(
                 (request -> request
-//                        .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
                         .requestMatchers(HttpMethod.POST, "/rejestracja").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/api/users").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/users-user").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/quiz").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/quiz").authenticated()
