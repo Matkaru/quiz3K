@@ -23,7 +23,7 @@ public class QuestionEntity {
     private List<AnswerEntity> answers;
 
     @ManyToOne(cascade = {CascadeType.ALL})
-    private QuizEntity quizId = getQuizId();
+    private QuizEntity quiz;
 
     @Enumerated
     private QuestionType questionType;

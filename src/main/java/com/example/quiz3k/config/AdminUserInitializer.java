@@ -1,6 +1,7 @@
 package com.example.quiz3k.config;
 
 
+import com.example.quiz3k.enums.UserType;
 import com.example.quiz3k.model.dao.UserEntity;
 import com.example.quiz3k.repository.AuthorityRepository;
 import com.example.quiz3k.repository.UserRepository;
@@ -28,6 +29,7 @@ public class AdminUserInitializer implements CommandLineRunner {
     @Value("${spring.security.user.password}")
     private String adminPassword;
 
+
     @Override
     public void run(String... args) throws Exception {
         UserEntity userEntity = new UserEntity();
@@ -39,6 +41,7 @@ public class AdminUserInitializer implements CommandLineRunner {
                 .map(x -> Collections.singletonList(x))
                 .orElseThrow()
         );
+        userEntity.setUserType(UserType.ADMIN);
         userRepository.save(userEntity);
     }
 }

@@ -4,7 +4,9 @@ import com.example.quiz3k.UserCopyApiException;
 import com.example.quiz3k.model.AppErrorMessage;
 import com.example.quiz3k.model.UserResponse;
 import com.example.quiz3k.model.dao.ActivationUserEntity;
+import com.example.quiz3k.model.dao.QuizEntity;
 import com.example.quiz3k.model.dao.UserEntity;
+import com.example.quiz3k.model.dto.Quiz;
 import com.example.quiz3k.model.dto.User;
 import com.example.quiz3k.repository.AuthorityRepository;
 import com.example.quiz3k.repository.UserActivationRepository;
@@ -62,15 +64,7 @@ public class UserService {
                 .user(savedUser)
                 .build()
         );
- //      //nie stworzone ze względu na brak fremwork - musi zwrócić komunikat
- //      SimpleMailMessage emailMessage = new SimpleMailMessage();
- //   emailMessage.setTo(savedUser.getEmail());
- //   emailMessage.setSubject("Complete Registration!");
- //   emailMessage.setFrom(senderEmail);
- //   emailMessage.setText("To confirm your account, please click here : " // aby potwierdzić konto kliknij "tutaj"
- //            +"http://localhost:8080/api/activate-user/" + newToken.getActivationToken());
 
- //   emailService.sendEmail(emailMessage);
     }
 
     public List<UserResponse> getAllUsers() {
@@ -84,6 +78,7 @@ public class UserService {
     private UserResponse toDto(UserEntity entity) {
         return UserResponse.builder().email(entity.getEmail()).login(entity.getLogin()).build();
     }
+
 
     @Transactional
     public void activateUser(String token) {

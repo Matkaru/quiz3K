@@ -11,6 +11,11 @@
 <form>
   <input type="text" name="email" [(ngModel)]="email" placeholder="Email"  >
   <input type="password" name="password" [(ngModel)]="password" placeholder="Hasło">
+  <select name="userType" [(ngModel)]="userType">
+    <option value="" disabled selected>Wybierz typ użytkownika</option>
+    <option value="CREATOR">Twórca</option>
+    <option value="USER">Użytkownik</option>
+  </select>
   <button (click)="registerUser()">Zarejestruj</button>
   <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
   <div class="error-message" *ngIf="userExists">Użytkownik już istnieje - zaloguj się</div>
