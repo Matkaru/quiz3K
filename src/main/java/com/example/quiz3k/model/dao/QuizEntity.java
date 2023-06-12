@@ -17,11 +17,14 @@ public class QuizEntity {
 
     private String quizName;
 
+    @Column(name = "owner_email")
+    private String ownerEmail;
+
     @OneToOne(cascade = {CascadeType.ALL})
     private UserEntity userEntity;
 
     @OneToMany(
-            mappedBy = "quizId",
+            mappedBy = "quiz",
             cascade = {CascadeType.ALL})
     private List<QuestionEntity> questions;
 

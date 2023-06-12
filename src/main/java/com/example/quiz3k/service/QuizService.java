@@ -22,10 +22,11 @@ public class QuizService {
     }
 
 
-    public QuizEntity createQuiz(String quizName) {
+    public QuizEntity createQuiz(String quizName, String ownerEmail) {
 
         QuizEntity quizEntity = new QuizEntity();
         quizEntity.setQuizName(quizName);
+        quizEntity.setOwnerEmail(ownerEmail);
         return quizRepository.save(quizEntity);
     }
     public List<Quiz> getAllQuiz() {
@@ -48,5 +49,12 @@ public class QuizService {
 
     public void deleteQuiz(Long id) {
         quizRepository.deleteById(id);
+    }
+
+    public List<Quiz> getQuizzesForUser(String ownerEmail) {
+        List<QuizEntity> quizEntities = quizRepository.findByOwnerEmail(ownerEmail);
+        return quizEntities.stream()
+                .map(entity -> new Quiz(entity.getId(), entity.getQuizName()))
+                .collect(Collectors.toList());
     }
 }
