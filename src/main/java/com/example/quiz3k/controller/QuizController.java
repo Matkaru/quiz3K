@@ -40,4 +40,9 @@ public class QuizController {
         quizService.deleteQuiz(id);
         return ResponseEntity.noContent().build();
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateQuiz(@PathVariable Long id, @RequestBody Quiz quizDTO) {
+        quizService.updateQuiz(id, quizDTO);
+        return ResponseEntity.ok().build();
+    }
 }

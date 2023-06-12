@@ -5,10 +5,16 @@
   <title>registration-page</title>
 </head>
 <body>
+<div class="right-corner">
+<button routerLink="/logowanie">Logowanie</button>
+</div>
 <form>
   <input type="text" name="email" [(ngModel)]="email" placeholder="Email"  >
   <input type="password" name="password" [(ngModel)]="password" placeholder="Hasło">
   <button (click)="registerUser()">Zarejestruj</button>
+  <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+  <div class="error-message" *ngIf="userExists">Użytkownik już istnieje - zaloguj się</div>
+  <div class="success-message" *ngIf="showSuccessMessage">Użytkownik został poprawnie zarejestrowany. Za chwilę zostaniesz przekierowany na stronę logowania.</div>
 </form>
 </body>
 </html>
