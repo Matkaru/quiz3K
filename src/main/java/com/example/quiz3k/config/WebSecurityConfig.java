@@ -38,6 +38,7 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/answers").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/answers").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/answers/{id}").authenticated()
+//                        .requestMatchers(HttpMethod.GET, "/api/quiz/quizId").authenticated()
                 )
         );
 
@@ -49,7 +50,8 @@ public class WebSecurityConfig {
         return (web) -> web.ignoring()
                 .requestMatchers(HttpMethod.POST, "/api/users")
                 .requestMatchers(HttpMethod.POST, "/users")
-                .requestMatchers(HttpMethod.GET, "/api/users");
+                .requestMatchers(HttpMethod.GET, "/api/users")
+                .requestMatchers(HttpMethod.GET, "/api/quiz/{id}");
     }
 
     @Bean

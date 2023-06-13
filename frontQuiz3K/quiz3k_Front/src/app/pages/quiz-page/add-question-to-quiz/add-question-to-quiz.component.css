@@ -1,0 +1,59 @@
+
+.quizName {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.question-section {
+  margin-top: 20px;
+}
+
+.question-section h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.question-section form {
+  margin-top: 10px;
+}
+
+.question-section label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.question-section textarea,
+.question-section input[type="text"] {
+  width: 50%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.question-section button[type="submit"],
+.question-section button[type="button"] {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.question-section button[type="submit"] {
+  margin-top: 10px;
+}
+
+.question-section button[type="button"] {
+  margin-left: 10px;
+}
+.question-list {
+  margin-top: 20px;
+}
+
+.question-list-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+}

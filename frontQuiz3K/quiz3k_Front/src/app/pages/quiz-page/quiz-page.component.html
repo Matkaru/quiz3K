@@ -53,7 +53,9 @@
         <button (click)="updateQuizName(quiz.id)" class="table-button">Zapisz</button>
         <button (click)="cancelEdit()" class="table-button">Anuluj</button>
       </ng-template>
-      <button routerLink="/add-question-to-quiz" class="table-button">Uzupełnij</button>
+<!--      <button routerLink="/add-question-to-quiz" class="table-button">Uzupełnij</button>-->
+
+      <button (click)="goToAddQuestionToQuiz(quiz.quizName)" class="table-button">Uzupełnij</button>
       <button (click)="deleteQuiz(quiz.id)" class="table-button">Usuń</button>
     </td>
   </ng-container>

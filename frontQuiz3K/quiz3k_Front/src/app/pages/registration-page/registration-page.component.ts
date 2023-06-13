@@ -46,7 +46,7 @@ export class RegistrationPageComponent implements OnInit{
         this.authService.logout();
         this.authService.createNewUser(user).subscribe(() => {
           this.showSuccessMessage = true;
-          timer(5000).subscribe(() => {
+          timer(3000).subscribe(() => {
             this.showSuccessMessage = false;
             this.router.navigate(['/', 'logowanie']);
           });

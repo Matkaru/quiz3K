@@ -14,7 +14,7 @@ import {HttpHeaders} from '@angular/common/http';
 })
 export class QuizPageComponent implements OnInit {
   id: number = Number('');
-  quizName: string = '';
+  quizName: string = 'quiz Name';
   quizList: Quiz[] = [];
   deleteConfirmation: boolean = false;
   quizToDeleteId: number | null = null;
@@ -81,10 +81,6 @@ export class QuizPageComponent implements OnInit {
     if (this.authService.isLoggedUser()) {
       this.deleteConfirmation = true;
       this.quizToDeleteId = quizId;
-      // this.quizService.deleteQuiz(quizId).subscribe(
-      //   () => {
-      //     this.loadQuizList();
-      // );
     } else {
       console.log("The user is not authenticated");
     }
@@ -119,4 +115,8 @@ export class QuizPageComponent implements OnInit {
     this.editedQuizId = null;
     this.editedQuizName = '';
   }
+  goToAddQuestionToQuiz(quizName: string) {
+    this.router.navigate(['add-question-to-quiz', quizName]);
+  }
+
 }

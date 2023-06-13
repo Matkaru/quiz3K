@@ -1,16 +1,28 @@
-<h1>Dodaj pytania do quizu</h1>
+<h2 class="quizName">Nazwa Quizu: {{ quizName }}</h2>
 
-<div>
-  <h2>Nazwa quizu: {{ quizName }}</h2>
+<div class="question-section">
+  <h3>Dodaj nowe pytanie:</h3>
+  <form (submit)="addQuestion()">
+    <div>
+      <label>Pytanie:</label>
+      <textarea [(ngModel)]="newQuestion.questionText" name="questionText" required></textarea>
+    </div>
+    <div *ngFor="let answer of newQuestion.answers; let i = index">
+      <label>Odpowiedź {{ i + 1 }}:</label>
+      <input type="text" [(ngModel)]="answer.text" name="answer{{ i }}" required>
+      <input type="radio" name="correctAnswer" [value]="answer.id" (change)="setCorrectAnswer(answer)">
+      <label>{{ answer.text }}</label>
+    </div>
+    <button type="submit">Dodaj pytanie</button>
+    <button type="button" (click)="addAnswer()">Dodaj odpowiedź</button>
+  </form>
 </div>
-
-<div>
-  <h2>Lista pytań:</h2>
-  <ul>
-    <li *ngFor="let question of questions">{{ question }}</li>
-  </ul>
-</div>
-
-<div>
-  <button (click)="addNewQuestion()">Dodaj nowe pytanie</button>
+<div class="question-list">
+  <h3>Lista pytań:</h3>
+  <div *ngFor="let question of questionList" class="question-list-item">
+    <p>{{ question.questionText }}</p>
+    <ul>
+      <li *ngFor="let answer of question.answers">{{ answer.text }}</li>
+    </ul>
+  </div>
 </div>

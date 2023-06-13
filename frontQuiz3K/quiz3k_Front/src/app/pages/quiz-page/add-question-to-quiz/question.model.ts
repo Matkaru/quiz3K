@@ -1,7 +1,13 @@
 export interface Question {
   id: number;
+  quizId: string;
   questionText: string;
-  answers: string[];
-  quizId: number;
-  questionType: string;
+  answers: Answer[];
+  correctAnswerId: string;
+}
+
+export interface Answer {
+  id: number;
+  text: string;
+  correct: boolean;
 }
