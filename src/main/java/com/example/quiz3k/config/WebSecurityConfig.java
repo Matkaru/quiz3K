@@ -38,7 +38,8 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/answers").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/answers").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/answers/{id}").authenticated()
-//                        .requestMatchers(HttpMethod.GET, "/api/quiz/quizId").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/questions").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/questions").authenticated()
                 )
         );
 

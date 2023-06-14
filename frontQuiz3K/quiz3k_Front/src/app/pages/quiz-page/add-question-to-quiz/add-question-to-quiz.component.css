@@ -6,7 +6,7 @@
 }
 
 .question-section {
-  margin-top: 20px;
+  margin: 20px;
 }
 
 .question-section h3 {
@@ -23,11 +23,15 @@
   margin-bottom: 5px;
 }
 
-.question-section textarea,
-.question-section input[type="text"] {
+.question-section textarea{
   width: 50%;
   padding: 5px;
   margin-bottom: 10px;
+}
+.question-section input[type="text"] {
+  width: 30%;
+  padding: 5px;
+  margin-bottom: 5px;
 }
 
 .question-section button[type="submit"],
@@ -38,6 +42,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin: 20px;
 }
 
 .question-section button[type="submit"] {
@@ -48,7 +53,8 @@
   margin-left: 10px;
 }
 .question-list {
-  margin-top: 20px;
+  margin: 20px;
+
 }
 
 .question-list-item {
@@ -57,3 +63,24 @@
   background-color: #f2f2f2;
   border-radius: 4px;
 }
+.remove-answer {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+select{
+  margin: 5px;
+}
+.checkbox-info{
+  position: relative;
+  color: #f32049;
+  margin-left: 600px;
+}
+.answer-wrapper {
+  display: flex;
+  align-items: center;
+}
+
