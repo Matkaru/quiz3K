@@ -37,7 +37,8 @@ import { AddQuestionToQuizComponent } from './pages/quiz-page/add-question-to-qu
   ],
   exports: [
     RegistrationPageComponent,
-    QuizPageComponent
+    QuizPageComponent,
+    AddQuestionToQuizComponent
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]

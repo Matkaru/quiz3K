@@ -22,6 +22,8 @@ public class QuestionEntity {
             cascade = {CascadeType.ALL})
     private List<AnswerEntity> answers;
 
+    private Long questionQuizId;
+
     @ManyToOne(cascade = {CascadeType.ALL})
     private QuizEntity quiz;
 

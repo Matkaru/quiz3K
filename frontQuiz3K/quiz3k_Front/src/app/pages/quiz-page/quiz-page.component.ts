@@ -115,8 +115,8 @@ export class QuizPageComponent implements OnInit {
     this.editedQuizId = null;
     this.editedQuizName = '';
   }
-  goToAddQuestionToQuiz(quizName: string) {
-    this.router.navigate(['add-question-to-quiz', quizName]);
+  goToAddQuestionToQuiz(quizId, quizName: string) {
+    this.router.navigate(['add-question-to-quiz', quizId, quizName]);
   }
 
 }

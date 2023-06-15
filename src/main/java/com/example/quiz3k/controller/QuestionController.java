@@ -1,18 +1,19 @@
 package com.example.quiz3k.controller;
 
-import com.example.quiz3k.enums.QuestionType;
 import com.example.quiz3k.model.dao.QuestionEntity;
 import com.example.quiz3k.model.dao.QuizEntity;
 import com.example.quiz3k.model.dto.CreateQuestionRequest;
+import com.example.quiz3k.repository.QuestionRepository;
 import com.example.quiz3k.service.QuestionService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -20,21 +21,25 @@ import java.util.Optional;
 public class QuestionController {
 
     private final QuestionService questionService;
+    private final QuestionRepository questionRepository;
 
-    public QuestionController(QuestionService questionService) {
+    public QuestionController(QuestionService questionService, QuestionRepository questionRepository) {
         this.questionService = questionService;
+        this.questionRepository = questionRepository;
     }
 
     @PostMapping(path = "/api/questions")
     public ResponseEntity<?> createQuestion(@RequestBody @Valid CreateQuestionRequest request) {
 
         QuestionEntity createdQuestion = questionService.createQuestion(request.getQuestionText(), request.getQuestionType());
+        createdQuestion.setQuestionQuizId(request.getQuestionQuizId());
+        questionRepository.save(createdQuestion);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdQuestion);
     }
 
     @GetMapping(path = "/api/questions")
-    public List<String> getAllQuestion(){
-        return questionService.getAllQuestions();
+    public List<String> getAllQuestion(@RequestParam("questionQuizId") Long questionQuizId) {
+        return questionService.getQuestionsByQuizId(questionQuizId);
     }
 
     @DeleteMapping(path = "/api/questions/{id}")

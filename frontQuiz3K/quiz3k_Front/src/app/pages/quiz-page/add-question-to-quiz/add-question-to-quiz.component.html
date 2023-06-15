@@ -1,5 +1,9 @@
 <h2 class="quizName">Nazwa Quizu: {{ quizName }}</h2>
+<h2 class="quizName">ID: {{ quizId }}</h2>
 
+
+<div style="display: flex;">
+  <div style="flex: 1; padding-right: 20px;">
 <div class="question-section">
   <h3>Dodaj nowe pytanie:</h3>
   <form (submit)="addQuestion()" [formGroup]="questionForm">
@@ -37,6 +41,14 @@
       </div>
     </div>
     <button type="button" (click)="addAnswer()">Dodaj odpowiedź</button>
-    <button type="submit">Dodaj pytanie</button>
+    <button type="submit">Zapisz pytanie</button>
   </form>
+</div>
+</div>
+<div style="flex: 1;">
+  <h2 class="list-title">Lista pytań:</h2>
+  <ul>
+    <li *ngFor="let question of questionList" >{{question}} </li>
+  </ul>
+</div>
 </div>

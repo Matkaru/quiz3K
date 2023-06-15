@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class CreateQuestionRequest {
+    private Long questionQuizId;
     private String questionText;
     private QuestionType questionType;
 }

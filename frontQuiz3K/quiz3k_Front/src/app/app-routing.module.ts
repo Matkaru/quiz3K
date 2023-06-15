@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'rejestracja', component: RegistrationPageComponent },
   { path: 'logowanie', component: LoginPageComponent},
   { path: 'quiz', component: QuizPageComponent },
-  { path: 'add-question-to-quiz/:quizName', component: AddQuestionToQuizComponent },
+  { path: 'add-question-to-quiz/:quizId/:quizName', component: AddQuestionToQuizComponent },
 
 ];
 

@@ -14,12 +14,12 @@ export class QuestionService {
 
   constructor(private http: HttpClient) {}
 
-  getQuestionsByQuiz(quizId: string): Observable<Question[]> {
-    const url = `${this.apiUrl}?quizId=${quizId}`;
+  getQuestionsByQuiz(questionQuizId: number): Observable<Question[]> {
+    const url = `${this.apiUrl}?questionQuizId=${questionQuizId}`;
     return this.http.get<Question[]>(url);
   }
 
-  createQuestion(question: { correctAnswerId: string; quizId: string; answers: any[]; id: string; questionType: string; questionText: string }): Observable<Question> {
+  createQuestion(question:  { correctAnswerId: string; answers: any[]; questionQuizId: string; id: string; questionType: string; questionText: string }): Observable<Question> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

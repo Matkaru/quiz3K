@@ -31,10 +31,16 @@ public class QuestionService {
     }
 
 
-    public List<String> getAllQuestions(){
-        return questionRepository.findAll().stream()
+
+    public List<String> getQuestionsByQuizId(Long questionQuizId) {
+        List<String> questionTexts = new ArrayList<>();
+        List<QuestionEntity> questions = questionRepository.findByQuestionQuizId(questionQuizId);
+
+        questionTexts = questions.stream()
                 .map(QuestionEntity::getQuestionText)
                 .collect(Collectors.toList());
+
+        return questionTexts;
     }
 
     public Optional<QuestionEntity> getQuestionById(Long id){

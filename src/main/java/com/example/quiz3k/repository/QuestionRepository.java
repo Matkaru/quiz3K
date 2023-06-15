@@ -10,5 +10,6 @@ import java.util.List;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<QuestionEntity, Long> {
+    List<QuestionEntity> findByQuestionQuizId(Long questionQuizId);
 //    List<QuestionEntity> findByQuiz(QuizEntity quizId);
 }

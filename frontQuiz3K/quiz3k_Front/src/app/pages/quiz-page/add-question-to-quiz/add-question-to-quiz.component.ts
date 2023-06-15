@@ -11,23 +11,18 @@ import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./add-question-to-quiz.component.css']
 })
 export class AddQuestionToQuizComponent implements OnInit {
-  questionList: any[] = [];
+  questionList: Question[] = [];
   questionForm: FormGroup;
   quizName: string;
-  newQuestion: {
-    correctAnswerId: string;
-    quizId: string;
-    answers: any[];
-    id: string;
-    questionType: string;
-    questionText: string;
-  } = {
+  quizId: number;
+  questionQuizId: number;
+  newQuestion: { correctAnswerId: string; answers: any[]; questionQuizId: string; id: string; questionType: string; questionText: string } = {
     id: '',
-    quizId: '',
     questionText: '',
     answers: [],
     correctAnswerId: '',
-    questionType: 'single'
+    questionType: 'single',
+    questionQuizId: ''
   };
 
   showCheckboxInfo: boolean = false;
@@ -35,7 +30,8 @@ export class AddQuestionToQuizComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private questionService: QuestionService
+    private questionService: QuestionService,
+
   ) {
     this.questionForm = this.formBuilder.group({
       questionText: ['', Validators.required],
@@ -46,8 +42,26 @@ export class AddQuestionToQuizComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
+      this.quizId = params['quizId'],
+        // this.questionQuizId = params['quizId'];
+      this.questionQuizId = params['quizId'];
+      this.newQuestion.questionQuizId = this.questionQuizId.toString();
       this.quizName = params['quizName'];
+      this.getQuestionsByQuiz();
+      console.log(this.questionList)
+
     });
+  }
+  getQuestionsByQuiz() {
+    this.questionService.getQuestionsByQuiz(this.questionQuizId).subscribe(
+      (questions: Question[]) => {
+        this.questionList = questions;
+        console.log(this.questionList);
+      },
+      error => {
+        console.error('Wystąpił błąd podczas pobierania pytań:', error);
+      }
+    );
   }
 
   getAnswerForm(index: number) {
@@ -61,19 +75,21 @@ export class AddQuestionToQuizComponent implements OnInit {
 
     this.newQuestion.questionText = this.questionForm.value.questionText;
     this.newQuestion.questionType = this.questionForm.value.questionType;
+    console.log(this.quizId)
   // && this.newQuestion.correctAnswerId
-    if (this.newQuestion.questionText && this.newQuestion.answers.length > 0 ) {
+    if (this.newQuestion.questionText && this.newQuestion.answers.length > 0 &&
+      this.newQuestion.questionQuizId) {
       this.questionService.createQuestion(this.newQuestion).subscribe(
         response => {
           console.log('Pytanie zostało zapisane:', response);
           this.questionForm.reset();
           this.newQuestion = {
             id: '',
-            quizId: '',
             questionText: '',
             answers: [],
             correctAnswerId: '',
-            questionType: 'single'
+            questionType: 'single',
+            questionQuizId: ''
           };
           this.showCheckboxInfo = false;
         },
@@ -124,4 +140,5 @@ export class AddQuestionToQuizComponent implements OnInit {
     this.showCheckboxInfo = questionType === 'multiple';
 
   }
+
 }
