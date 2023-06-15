@@ -4,6 +4,7 @@ import {QuizService} from "../../../service/quiz.service";
 import {QuestionService} from "../../../service/question.service";
 import {Answer, Question} from "./question.model";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../auth-page/auth.service";
 
 @Component({
   selector: 'app-add-question-to-quiz',
@@ -16,6 +17,7 @@ export class AddQuestionToQuizComponent implements OnInit {
   quizName: string;
   quizId: number;
   questionQuizId: number;
+  questionType: string;
   newQuestion: { correctAnswerId: string; answers: any[]; questionQuizId: string; id: string; questionType: string; questionText: string } = {
     id: '',
     questionText: '',
@@ -28,9 +30,11 @@ export class AddQuestionToQuizComponent implements OnInit {
   showCheckboxInfo: boolean = false;
 
   constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private questionService: QuestionService,
+    private authService: AuthService,
 
   ) {
     this.questionForm = this.formBuilder.group({
@@ -39,7 +43,10 @@ export class AddQuestionToQuizComponent implements OnInit {
       answers: this.formBuilder.array([])
     });
   }
-
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['']);
+  }
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.quizId = params['quizId'],
@@ -82,6 +89,7 @@ export class AddQuestionToQuizComponent implements OnInit {
       this.questionService.createQuestion(this.newQuestion).subscribe(
         response => {
           console.log('Pytanie zostało zapisane:', response);
+          window.location.reload();
           this.questionForm.reset();
           this.newQuestion = {
             id: '',
