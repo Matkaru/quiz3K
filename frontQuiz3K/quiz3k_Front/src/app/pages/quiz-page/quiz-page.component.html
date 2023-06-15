@@ -47,7 +47,7 @@
     <th mat-header-cell *matHeaderCellDef class="text-right"></th>
     <td mat-cell *matCellDef="let quiz" class="text-right">
       <ng-container *ngIf="editedQuizId !== quiz.id; else editButtons">
-        <button (click)="editQuiz(quiz)" class="table-button">Edytuj</button>
+        <button (click)="editQuiz(quiz)" class="table-button">Edytuj nazwę</button>
       </ng-container>
       <ng-template #editButtons>
         <button (click)="updateQuizName(quiz.id)" class="table-button">Zapisz</button>

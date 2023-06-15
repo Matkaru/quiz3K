@@ -12,7 +12,7 @@
   <h3>Dodaj nowe pytanie:</h3>
   <form (submit)="addQuestion()" [formGroup]="questionForm">
     <div>
-      <label>Pytanie:</label>
+      <label>Treść pytania:</label>
       <textarea formControlName="questionText" required [ngClass]="{ 'is-invalid': questionForm.get('questionText').invalid && (questionForm.get('questionText').dirty || questionForm.get('questionText').touched) }"></textarea>
       <div *ngIf="questionForm.get('questionText').invalid && (questionForm.get('questionText').dirty || questionForm.get('questionText').touched)" class="invalid-feedback">
         Uzupełnij to pole.
@@ -49,10 +49,10 @@
   </form>
 </div>
 </div>
-<div style="flex: 1;">
+<div style="flex: 1;" class="question-list-wrapper">
   <h2 class="list-title">Lista pytań:</h2>
   <ul>
-    <li *ngFor="let question of questionList" >{{question}} </li>
+    <li *ngFor="let question of questionList" class="qestion-list">{{question}} </li>
   </ul>
 </div>
 </div>

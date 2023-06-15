@@ -22,11 +22,16 @@
   display: block;
   margin-bottom: 5px;
 }
+.question-section {
+  text-align: center; /* Wyśrodkowuje zawartość w poziomie */
+}
 
-.question-section textarea{
+.question-section textarea {
   width: 80%;
   padding: 5px;
   margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .question-section input[type="text"] {
   width: 30%;
@@ -100,4 +105,24 @@ button{
   top: 0;
   right: 0;
   margin: 10px;
+}
+
+.question-list-wrapper ul li {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.question-list-wrapper {
+  border: 1px solid #ccc; /* Dodaje obramowanie */
+  padding: 10px; /* Dodaje wewnętrzne wypełnienie */
+  margin: 20px; /* Dodaje margines dolny */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Dodaje cień */
+  background-color: beige;
+
+}
+.question-section {
+  border: 1px solid #ccc; /* Dodaje obramowanie */
+  padding: 10px; /* Dodaje wewnętrzne wypełnienie */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Dodaje cień */
+  background-color: beige;
+
 }
