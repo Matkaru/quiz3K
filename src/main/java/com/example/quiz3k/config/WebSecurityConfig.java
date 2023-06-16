@@ -52,6 +52,7 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/users")
                 .requestMatchers(HttpMethod.POST, "/users")
                 .requestMatchers(HttpMethod.GET, "/api/users")
+                .requestMatchers(HttpMethod.POST, "/api/answers")
                 .requestMatchers(HttpMethod.GET, "/api/quiz/{id}");
     }
 

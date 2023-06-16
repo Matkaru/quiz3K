@@ -107,7 +107,7 @@ button{
   margin: 10px;
 }
 
-.question-list-wrapper ul li {
+.question-list-wrapper ol li {
   margin-bottom: 10px;
   font-size: 18px;
 }

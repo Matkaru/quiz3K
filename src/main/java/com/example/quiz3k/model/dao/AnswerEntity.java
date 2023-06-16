@@ -16,6 +16,8 @@ public class AnswerEntity {
 
     private boolean confirmedAnswer;
 
+    private Long answerQuestionId;
+
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "question")
     private QuestionEntity question;

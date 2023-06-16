@@ -10,7 +10,7 @@ import {Question} from "../pages/quiz-page/add-question-to-quiz/question.model";
 })
 export class QuestionService {
   private apiUrl = 'http://localhost:8080/api/questions';
-  private answerApiUrl = 'http://localhost:8080/api/answers';
+  // private answerApiUrl = 'http://localhost:8080/api/answers';
 
   constructor(private http: HttpClient) {}
 
@@ -19,7 +19,7 @@ export class QuestionService {
     return this.http.get<Question[]>(url);
   }
 
-  createQuestion(question:  { correctAnswerId: string; answers: any[]; questionQuizId: string; id: string; questionType: string; questionText: string }): Observable<Question> {
+ createQuestion(question: { questionQuizId: string; id: string; questionType: string; questionText: string }): Observable<Question> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -28,14 +28,14 @@ export class QuestionService {
     return this.http.post<Question>(this.apiUrl, question, httpOptions);
   }
 
-  createAnswers(answers: any[]): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.http.post<any>(this.answerApiUrl, answers, httpOptions);
-  }
+  // createAnswers(answers: any[]): Observable<any> {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json'
+  //     })
+  //   };
+  //   return this.http.post<any>(this.answerApiUrl, answers, httpOptions);
+  // }
 
   updateQuestion(question: Question): Observable<Question> {
     const url = `${this.apiUrl}/${question.id}`;

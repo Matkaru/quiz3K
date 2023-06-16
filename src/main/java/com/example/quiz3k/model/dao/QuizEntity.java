@@ -23,9 +23,9 @@ public class QuizEntity {
     @OneToOne(cascade = {CascadeType.ALL})
     private UserEntity userEntity;
 
-    @OneToMany(
-            mappedBy = "quiz",
-            cascade = {CascadeType.ALL})
-    private List<QuestionEntity> questions;
+//    @OneToMany(
+//            mappedBy = "quiz",
+//            cascade = {CascadeType.ALL})
+//    private List<QuestionEntity> questions;
 
 }

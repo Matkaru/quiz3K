@@ -23,6 +23,7 @@ public class AnswerService {
         AnswerEntity answerEntity = new AnswerEntity();
         answerEntity.setAnswerForTheQuestion(answer.getAnswerForTheQuestion());
         answerEntity.setConfirmedAnswer(answer.isConfirmedAnswer());
+        answerEntity.setAnswerQuestionId(answer.getAnswerQuestionId());
 
         return  answerRepository.save(answerEntity);
     }
@@ -45,4 +46,8 @@ public class AnswerService {
     public void deleteAnswer(Long id) {
         answerRepository.deleteById(id);
     }
+
+//    public List<AnswerEntity> getAnswersByQuestionId(Long answerQuestionId) {
+//        return answerRepository.findByAnswerQuestionId(answerQuestionId);
+//    }
 }
