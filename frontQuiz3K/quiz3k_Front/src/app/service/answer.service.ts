@@ -27,4 +27,7 @@ export class AnswerService {
   getAnswersByQuestion(question: Question): Answer[] {
     return this.answers.filter(answer => answer.answerQuestionId === parseInt(question.id, 10));
   }
+  getAllAnswers(): Observable<string[]> {
+    return this.http.get<string[]>(this.apiUrl);
+  }
 }

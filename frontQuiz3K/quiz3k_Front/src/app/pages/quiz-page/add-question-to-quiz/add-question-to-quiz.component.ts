@@ -64,6 +64,7 @@ export class AddQuestionToQuizComponent implements OnInit {
       this.newQuestion.questionQuizId = this.questionQuizId.toString();
       this.quizName = params['quizName'];
       this.getQuestionsByQuiz();
+      this.loadAllAnswers();
       console.log(this.questionList);
     });
   }
@@ -159,10 +160,11 @@ export class AddQuestionToQuizComponent implements OnInit {
     const answerIndex = (this.questionForm.get('answers') as FormArray).controls.findIndex(
       (control) => control === answerFormGroup
     );
+
+    const answerControl = this.getAnswerForm(answerIndex);
     const answer = this.newQuestion.answers[answerIndex];
 
-    answer.correct = !answer.correct;
-    this.answers[answerIndex].correct = answer.correct; // Dodaj tę linię
+    answerControl.get('correct').setValue(!answer.correct);
   }
 
   removeAnswer(answerFormGroup: FormGroup) {
@@ -172,7 +174,7 @@ export class AddQuestionToQuizComponent implements OnInit {
     if (answerIndex > -1) {
       answersArray.removeAt(answerIndex);
       this.newQuestion.answers.splice(answerIndex, 1);
-      this.answers.splice(answerIndex, 1); // Dodaj tę linię
+      this.answers.splice(answerIndex, 1);
     }
   }
 
@@ -192,4 +194,16 @@ export class AddQuestionToQuizComponent implements OnInit {
       }
     );
   }
+  loadAllAnswers() {
+    this.answerService.getAllAnswers().subscribe(
+      (answers: string[]) => {
+        this.answers = answers;
+        console.log(answers);
+      },
+      (error) => {
+        console.error('Wystąpił błąd podczas pobierania odpowiedzi:', error);
+      }
+    );
+  }
 }
+
