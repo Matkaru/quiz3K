@@ -1,0 +1,128 @@
+
+.quizName {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.question-section {
+  margin: 20px;
+}
+
+.question-section h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.question-section form {
+  margin-top: 10px;
+}
+
+.question-section label {
+  display: block;
+  margin-bottom: 5px;
+}
+.question-section {
+  text-align: center; /* Wyśrodkowuje zawartość w poziomie */
+}
+
+.question-section textarea {
+  width: 80%;
+  padding: 5px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.question-section input[type="text"] {
+  width: 30%;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.question-section button[type="submit"],
+.question-section button[type="button"] {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.question-section button[type="submit"] {
+  margin-top: 10px;
+}
+
+.question-section button[type="button"] {
+  margin-left: 10px;
+}
+.question-list {
+  margin: 20px;
+
+}
+
+.question-list-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+}
+.remove-answer {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+select{
+  margin: 5px;
+}
+.checkbox-info{
+  position: relative;
+  color: #f32049;
+  margin-left: 5px;
+}
+.answer-wrapper {
+  display: flex;
+  align-items: center;
+}
+.list-title{
+  text-align: center;
+}
+button{
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #3693f6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.right-corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
+
+.question-list-wrapper ol li {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.question-list-wrapper {
+  border: 1px solid #ccc; /* Dodaje obramowanie */
+  padding: 10px; /* Dodaje wewnętrzne wypełnienie */
+  margin: 20px; /* Dodaje margines dolny */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Dodaje cień */
+  background-color: beige;
+
+}
+.question-section {
+  border: 1px solid #ccc; /* Dodaje obramowanie */
+  padding: 10px; /* Dodaje wewnętrzne wypełnienie */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Dodaje cień */
+  background-color: beige;
+
+}

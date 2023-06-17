@@ -8,5 +8,6 @@ public class Answer {
     @NotEmpty(message = "musi zawierac tekst")
     private String answerForTheQuestion;
     private boolean confirmedAnswer;
+    private Long answerQuestionId;
 
 }

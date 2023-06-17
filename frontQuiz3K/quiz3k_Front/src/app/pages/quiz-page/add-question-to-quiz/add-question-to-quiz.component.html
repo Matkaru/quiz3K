@@ -1,16 +1,70 @@
-<h1>Dodaj pytania do quizu</h1>
+<h2 class="quizName">Nazwa Quizu: {{ quizName }}</h2>
+<h2 class="quizName">ID: {{ quizId }}</h2>
 
-<div>
-  <h2>Nazwa quizu: {{ quizName }}</h2>
+<header>
+  <div class="right-corner">
+    <button (click)="logout()">Wyloguj</button>
+  </div>
+</header>
+<div style="display: flex;">
+  <div style="flex: 1; padding-right: 20px;">
+<div class="question-section">
+  <h3>Dodaj nowe pytanie:</h3>
+  <form (submit)="addQuestion()" [formGroup]="questionForm">
+    <div>
+      <label>Treść pytania:</label>
+      <textarea formControlName="questionText" required [ngClass]="{ 'is-invalid': questionForm.get('questionText').invalid && (questionForm.get('questionText').dirty || questionForm.get('questionText').touched) }"></textarea>
+      <div *ngIf="questionForm.get('questionText').invalid && (questionForm.get('questionText').dirty || questionForm.get('questionText').touched)" class="invalid-feedback">
+        Uzupełnij to pole.
+      </div>
+    </div>
+    <div>
+      <label>Typ pytania:</label>
+      <select formControlName="questionType" required (change)="updateQuestionType()">
+        <option value="" disabled [selected]="true">Wybierz typ pytania</option>
+        <option value="SINGLE">Jednokrotny</option>
+        <option value="MULTIPLE">Wielokrotny</option>
+      </select>
+      <div *ngIf="questionForm.get('questionType').invalid && (questionForm.get('questionType').dirty || questionForm.get('questionType').touched)" class="invalid-feedback">
+        Wybierz typ pytania.
+      </div>
+    </div>
+    <div>
+      <div *ngIf="showCheckboxInfo || questionForm.value.questionType === 'single'">
+        <label class="checkbox-info">Zaznacz poprawne odpowiedzi:</label>
+      </div>
+    </div>
+    <div *ngFor="let answer of newQuestion.answers; let i = index">
+      <div *ngIf="!answer.deleted">
+        <div class="answer-wrapper" [formGroup]="getAnswerForm(i)">
+          <input type="checkbox" formControlName="correct" (change)="toggleCorrectAnswer(getAnswerForm(i))" [checked]="answer.correct">
+          <input type="text" formControlName="answerForTheQuestion" required>
+<!--          <label>{{ answer }}</label>-->
+          <button type="button" class="remove-answer" (click)="removeAnswer(getAnswerForm(i))">Usuń odpowiedź</button>
+        </div>
+      </div>
+    </div>
+    <button type="button" (click)="addAnswer()">Dodaj odpowiedź</button>
+    <button type="submit">Zapisz pytanie</button>
+  </form>
 </div>
-
-<div>
-  <h2>Lista pytań:</h2>
-  <ul>
-    <li *ngFor="let question of questions">{{ question }}</li>
-  </ul>
 </div>
-
-<div>
-  <button (click)="addNewQuestion()">Dodaj nowe pytanie</button>
+<div style="flex: 1;" class="question-list-wrapper">
+  <h2 class="list-title">Lista pytań:</h2>
+  <ol>
+    <li *ngFor="let question of questionList" class="qestion-list">{{question}}
+      <ul>
+<!--        <li *ngFor="let answer of answersForQuestion">-->
+<!--          {{ answer.answerForTheQuestion }} ({{ answer.correct ? 'Poprawna' : 'Niepoprawna' }})-->
+<!--        </li>-->
+      </ul>
+    </li>
+  </ol>
+</div>
+  <div>
+    <h4>Lista odpowiedzi:</h4>
+    <ul>
+      <li *ngFor="let answer of answers">{{ answer }}</li>
+    </ul>
+  </div>
 </div>

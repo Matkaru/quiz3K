@@ -17,13 +17,15 @@ public class QuestionEntity {
 
     private String questionText;
 
-    @OneToMany(
-            mappedBy = "question",
-            cascade = {CascadeType.ALL})
-    private List<AnswerEntity> answers;
+//    @OneToMany(
+//            mappedBy = "question",
+//            cascade = {CascadeType.ALL})
+//    private List<AnswerEntity> answers;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
-    private QuizEntity quiz;
+    private Long questionQuizId;
+
+//    @ManyToOne(cascade = {CascadeType.ALL})
+//    private QuizEntity quiz;
 
     @Enumerated
     private QuestionType questionType;

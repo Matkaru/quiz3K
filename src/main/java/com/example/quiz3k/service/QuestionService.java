@@ -30,14 +30,17 @@ public class QuestionService {
         return questionRepository.save(entity);
     }
 
-//    public List<QuestionEntity> getQuestionsByQuiz(QuizEntity quizId){
-//        return new ArrayList<>(questionRepository.findByQuiz(quizId));
-//    }
 
-    public List<String> getAllQuestions(){
-        return questionRepository.findAll().stream()
+
+    public List<String> getQuestionsByQuizId(Long questionQuizId) {
+        List<String> questionTexts = new ArrayList<>();
+        List<QuestionEntity> questions = questionRepository.findByQuestionQuizId(questionQuizId);
+
+        questionTexts = questions.stream()
                 .map(QuestionEntity::getQuestionText)
                 .collect(Collectors.toList());
+
+        return questionTexts;
     }
 
     public Optional<QuestionEntity> getQuestionById(Long id){
@@ -46,5 +49,9 @@ public class QuestionService {
 
     public void deleteQuestion(Long id){
         questionRepository.deleteById(id);
+    }
+
+    public QuestionEntity updateQuestion(QuestionEntity question) {
+        return questionRepository.save(question);
     }
 }

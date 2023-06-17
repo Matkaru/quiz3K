@@ -57,4 +57,13 @@ public class QuizService {
                 .map(entity -> new Quiz(entity.getId(), entity.getQuizName()))
                 .collect(Collectors.toList());
     }
+    public QuizEntity getQuizById(Long id) {
+        Optional<QuizEntity> quizOptional = quizRepository.findById(id);
+
+        if (quizOptional.isPresent()) {
+            return quizOptional.get();
+        } else {
+            throw new QuizNotFoundException("Quiz not found");
+        }
+    }
 }

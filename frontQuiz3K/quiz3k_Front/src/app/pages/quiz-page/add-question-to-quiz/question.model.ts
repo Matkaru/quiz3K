@@ -1,7 +1,17 @@
 export interface Question {
-  id: number;
+  id: string;
   questionText: string;
-  answers: string[];
-  quizId: number;
+  // answers: Answer[];
+  // correctAnswerId: string;
   questionType: string;
+  questionQuizId: string;
+}
+
+export interface Answer {
+  id: number;
+  answerForTheQuestion: string;
+  correct: boolean;
+  // deleted?: boolean;
+  answerQuestionId: number;
+
 }

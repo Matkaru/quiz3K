@@ -45,4 +45,10 @@ public class AnswerController {
         return ResponseEntity.noContent().build();
     }
 
+//    @GetMapping("/answers")
+//    public ResponseEntity<List<AnswerEntity>> getAnswersByQuestionId(@RequestParam("questionId") Long questionId) {
+//        List<AnswerEntity> answers = answerService.getAnswersByQuestionId(questionId);
+//        return ResponseEntity.ok(answers);
+//    }
+
 }
