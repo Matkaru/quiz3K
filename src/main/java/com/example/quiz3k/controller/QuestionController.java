@@ -38,7 +38,7 @@ public class QuestionController {
     }
 
     @GetMapping(path = "/api/questions")
-    public List<String> getAllQuestion(@RequestParam("questionQuizId") Long questionQuizId) {
+    public List<QuestionEntity> getAllQuestion(@RequestParam("questionQuizId") Long questionQuizId) {
         return questionService.getQuestionsByQuizId(questionQuizId);
     }
 

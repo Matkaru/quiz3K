@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-
-import { QuizService } from '../../../service/quiz.service';
 import { QuestionService } from '../../../service/question.service';
 import { AnswerService } from '../../../service/answer.service';
 import { AuthService } from '../../auth-page/auth.service';
 import { Answer, Question } from './question.model';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-add-question-to-quiz',
@@ -14,6 +13,7 @@ import { Answer, Question } from './question.model';
   styleUrls: ['./add-question-to-quiz.component.css']
 })
 export class AddQuestionToQuizComponent implements OnInit {
+  id: number;
   answers: any[] = [];
   questionList: Question[] = [];
   questionForm: FormGroup;
@@ -38,6 +38,7 @@ export class AddQuestionToQuizComponent implements OnInit {
   showCheckboxInfo: boolean = false;
 
   constructor(
+    private http: HttpClient,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -64,16 +65,13 @@ export class AddQuestionToQuizComponent implements OnInit {
       this.newQuestion.questionQuizId = this.questionQuizId.toString();
       this.quizName = params['quizName'];
       this.getQuestionsByQuiz();
-      this.loadAllAnswers();
-      console.log(this.questionList);
     });
   }
-
   getQuestionsByQuiz() {
     this.questionService.getQuestionsByQuiz(this.questionQuizId).subscribe(
       (questions: Question[]) => {
-        this.questionList = questions;
-        console.log(this.questionList);
+        this.questionList = questions
+        this.loadAnswersForQuestions();
       },
       (error) => {
         console.error('Wystąpił błąd podczas pobierania pytań:', error);
@@ -117,9 +115,10 @@ export class AddQuestionToQuizComponent implements OnInit {
     } else {
       console.log('Wypełnij wszystkie pola');
     }
+
   }
 
-  createAnswers(questionId: string) {
+  createAnswers(questionId: number) {
     const answers = (this.questionForm.get('answers') as FormArray).value.map((answer) => ({
       ...answer,
       answerQuestionId: questionId,
@@ -136,7 +135,7 @@ export class AddQuestionToQuizComponent implements OnInit {
         }
       );
     });
-    console.log("pytania"+ JSON.stringify(answers))
+    window.location.reload();
   }
 
   addAnswer() {
@@ -147,8 +146,8 @@ export class AddQuestionToQuizComponent implements OnInit {
     const newAnswerFormGroup = this.formBuilder.group({
       id: '',
       answerForTheQuestion: '',
-      correct: false
-      // deleted: false
+      confirmedAnswer: false
+
     });
 
     (this.questionForm.get('answers') as FormArray).push(newAnswerFormGroup);
@@ -164,7 +163,7 @@ export class AddQuestionToQuizComponent implements OnInit {
     const answerControl = this.getAnswerForm(answerIndex);
     const answer = this.newQuestion.answers[answerIndex];
 
-    answerControl.get('correct').setValue(!answer.correct);
+    answerControl.get('confirmedAnswer').setValue(!answer.confirmedAnswer);
   }
 
   removeAnswer(answerFormGroup: FormGroup) {
@@ -182,26 +181,44 @@ export class AddQuestionToQuizComponent implements OnInit {
     const questionType = this.questionForm.value.questionType;
     this.showCheckboxInfo = questionType === 'multiple';
   }
-  answersForQuestion: Answer[] = [];
 
-  getAnswersByQuestion(question: Question): void {
-    this.answerService.getAnswersByQuestionId(parseInt(question.id, 10)).subscribe(
+  loadAnswersForQuestions() {
+    if (this.questionList) {
+      for (const question of this.questionList) {
+        this.getAnswersByQuestionId(question.id);
+      }
+    }
+  }
+  getAnswersByQuestionId(questionId: number) {
+    this.answerService.getAnswersByQuestion(questionId).subscribe(
       (answers: Answer[]) => {
-        this.answersForQuestion = answers;
+        this.assignAnswersToQuestion(questionId, answers);
       },
       (error) => {
         console.error('Wystąpił błąd podczas pobierania odpowiedzi:', error);
       }
     );
   }
-  loadAllAnswers() {
-    this.answerService.getAllAnswers().subscribe(
-      (answers: string[]) => {
-        this.answers = answers;
-        console.log(answers);
+
+  assignAnswersToQuestion(questionId: number, answers: Answer[]) {
+    const question = this.questionList.find(q => q.id === questionId);
+    if (question) {
+      question.answers = answers;
+    }
+  }
+
+  editQuestion(id) {
+
+  }
+
+  deleteQuestion(id: number) {
+    this.questionService.deleteQuestion(id).subscribe(
+      () => {
+        console.log('Pytanie zostało usunięte');
+        window.location.reload();
       },
       (error) => {
-        console.error('Wystąpił błąd podczas pobierania odpowiedzi:', error);
+        console.error('Wystąpił błąd podczas usuwania pytania:', error);
       }
     );
   }

@@ -5,6 +5,8 @@ import com.example.quiz3k.model.dto.Answer;
 import com.example.quiz3k.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -47,7 +49,15 @@ public class AnswerService {
         answerRepository.deleteById(id);
     }
 
-//    public List<AnswerEntity> getAnswersByQuestionId(Long answerQuestionId) {
-//        return answerRepository.findByAnswerQuestionId(answerQuestionId);
-//    }
+    public List<String> getAnswersByQuestionId(Long answerQuestionId) {
+        List<String> answerForTheQuestion = new ArrayList<>();
+        List<AnswerEntity> answers = answerRepository.findByAnswerQuestionId(answerQuestionId);
+
+        answerForTheQuestion = answers.stream()
+                .map(AnswerEntity::getAnswerForTheQuestion)
+                .collect(Collectors.toList());
+        return answerForTheQuestion;
+
+    }
+
 }

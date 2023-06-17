@@ -34,21 +34,14 @@ public class AnswerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAnswer);
     }
 
-    @GetMapping
-    public List<String> getAllAnswers() {
-        return answerService.getAllAnswers();
-    }
-
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteAnswer(@PathVariable("id") Long id) {
         answerService.deleteAnswer(id);
         return ResponseEntity.noContent().build();
     }
 
-//    @GetMapping("/answers")
-//    public ResponseEntity<List<AnswerEntity>> getAnswersByQuestionId(@RequestParam("questionId") Long questionId) {
-//        List<AnswerEntity> answers = answerService.getAnswersByQuestionId(questionId);
-//        return ResponseEntity.ok(answers);
-//    }
-
+    @GetMapping
+    public List<String> getAnswersByQuestionId(@RequestParam("answerQuestionId") Long answerQuestionId) {
+        return answerService.getAnswersByQuestionId(answerQuestionId);
+    }
 }
