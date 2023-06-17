@@ -107,22 +107,26 @@ button{
   margin: 10px;
 }
 
-.question-list-wrapper ol li {
+.question-list-wrapper ol {
   margin-bottom: 10px;
   font-size: 18px;
 }
+.answer-list {
+  margin-top: 2px;
+  font-size: 14px;
+}
 .question-list-wrapper {
-  border: 1px solid #ccc; /* Dodaje obramowanie */
-  padding: 10px; /* Dodaje wewnętrzne wypełnienie */
-  margin: 20px; /* Dodaje margines dolny */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Dodaje cień */
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   background-color: beige;
 
 }
 .question-section {
-  border: 1px solid #ccc; /* Dodaje obramowanie */
-  padding: 10px; /* Dodaje wewnętrzne wypełnienie */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Dodaje cień */
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   background-color: beige;
 
 }

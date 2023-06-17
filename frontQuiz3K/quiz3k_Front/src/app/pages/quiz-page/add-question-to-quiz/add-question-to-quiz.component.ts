@@ -113,6 +113,7 @@ export class AddQuestionToQuizComponent implements OnInit {
     } else {
       console.log('Wypełnij wszystkie pola');
     }
+
   }
 
   createAnswers(questionId: number) {
@@ -132,7 +133,7 @@ export class AddQuestionToQuizComponent implements OnInit {
         }
       );
     });
-    console.log("pytania"+ JSON.stringify(answers))
+    window.location.reload();
   }
 
   addAnswer() {

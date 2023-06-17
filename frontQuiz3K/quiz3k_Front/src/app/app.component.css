@@ -1,12 +1,12 @@
 img {
-  width: 250px;
+  width: 150px;
   height: auto;
 }
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 60px;
+  padding: 10px;
   background-color: #a6da67;
 }
 
@@ -51,7 +51,7 @@ img {
 
 .start-page-header {
   color: #f32049;
-  font-size: 100px;
+  font-size: 50px;
 
   text-align: center;
 }

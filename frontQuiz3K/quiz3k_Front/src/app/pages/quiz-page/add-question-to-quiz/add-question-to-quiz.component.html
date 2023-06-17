@@ -54,7 +54,7 @@
       <li *ngFor="let question of questionList" class="question-list">
         {{ question.questionText }}
         <ul>
-          <li *ngFor="let answer of question.answers">
+          <li *ngFor="let answer of question.answers" class="answer-list">
             {{ answer}}
           </li>
         </ul>
