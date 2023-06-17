@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-
-import { QuizService } from '../../../service/quiz.service';
 import { QuestionService } from '../../../service/question.service';
 import { AnswerService } from '../../../service/answer.service';
 import { AuthService } from '../../auth-page/auth.service';
@@ -14,6 +12,7 @@ import { Answer, Question } from './question.model';
   styleUrls: ['./add-question-to-quiz.component.css']
 })
 export class AddQuestionToQuizComponent implements OnInit {
+  id: number;
   answers: any[] = [];
   questionList: Question[] = [];
   questionForm: FormGroup;
@@ -64,16 +63,13 @@ export class AddQuestionToQuizComponent implements OnInit {
       this.newQuestion.questionQuizId = this.questionQuizId.toString();
       this.quizName = params['quizName'];
       this.getQuestionsByQuiz();
-      this.loadAllAnswers();
-      console.log(this.questionList);
     });
   }
-
   getQuestionsByQuiz() {
     this.questionService.getQuestionsByQuiz(this.questionQuizId).subscribe(
       (questions: Question[]) => {
-        this.questionList = questions;
-        console.log(this.questionList);
+        this.questionList = questions
+        this.loadAnswersForQuestions();
       },
       (error) => {
         console.error('Wystąpił błąd podczas pobierania pytań:', error);
@@ -119,7 +115,7 @@ export class AddQuestionToQuizComponent implements OnInit {
     }
   }
 
-  createAnswers(questionId: string) {
+  createAnswers(questionId: number) {
     const answers = (this.questionForm.get('answers') as FormArray).value.map((answer) => ({
       ...answer,
       answerQuestionId: questionId,
@@ -148,7 +144,7 @@ export class AddQuestionToQuizComponent implements OnInit {
       id: '',
       answerForTheQuestion: '',
       confirmedAnswer: false
-      // deleted: false
+
     });
 
     (this.questionForm.get('answers') as FormArray).push(newAnswerFormGroup);
@@ -182,28 +178,32 @@ export class AddQuestionToQuizComponent implements OnInit {
     const questionType = this.questionForm.value.questionType;
     this.showCheckboxInfo = questionType === 'multiple';
   }
-  answersForQuestion: Answer[] = [];
+  // private question: any;
 
-  getAnswersByQuestion(question: Question): void {
-    this.answerService.getAnswersByQuestionId(parseInt(question.id, 10)).subscribe(
+  loadAnswersForQuestions() {
+    if (this.questionList) {
+      for (const question of this.questionList) {
+        this.getAnswersByQuestionId(question.id);
+      }
+    }
+  }
+  getAnswersByQuestionId(questionId: number) {
+    this.answerService.getAnswersByQuestion(questionId).subscribe(
       (answers: Answer[]) => {
-        this.answersForQuestion = answers;
+        this.assignAnswersToQuestion(questionId, answers);
       },
       (error) => {
         console.error('Wystąpił błąd podczas pobierania odpowiedzi:', error);
       }
     );
   }
-  loadAllAnswers() {
-    this.answerService.getAllAnswers().subscribe(
-      (answers: string[]) => {
-        this.answers = answers;
-        console.log(answers);
-      },
-      (error) => {
-        console.error('Wystąpił błąd podczas pobierania odpowiedzi:', error);
-      }
-    );
+
+  assignAnswersToQuestion(questionId: number, answers: Answer[]) {
+    const question = this.questionList.find(q => q.id === questionId);
+    if (question) {
+      question.answers = answers;
+    }
   }
+
 }
 

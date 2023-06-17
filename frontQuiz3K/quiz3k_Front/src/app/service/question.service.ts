@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {Question} from "../pages/quiz-page/add-question-to-quiz/question.model";
 
 
@@ -14,9 +14,15 @@ export class QuestionService {
 
   constructor(private http: HttpClient) {}
 
+  // getQuestionsByQuiz(questionQuizId: number): Observable<Question[]> {
+  //   const url = `${this.apiUrl}?questionQuizId=${questionQuizId}`;
+  //   return this.http.get<Question[]>(url);
+  // }
   getQuestionsByQuiz(questionQuizId: number): Observable<Question[]> {
     const url = `${this.apiUrl}?questionQuizId=${questionQuizId}`;
-    return this.http.get<Question[]>(url);
+    return this.http.get<Question[]>(url).pipe(
+      map((questions: Question[]) => questions)
+    );
   }
 
  createQuestion(question: { questionQuizId: string; id: string; questionType: string; questionText: string }): Observable<Question> {
@@ -28,14 +34,6 @@ export class QuestionService {
     return this.http.post<Question>(this.apiUrl, question, httpOptions);
   }
 
-  // createAnswers(answers: any[]): Observable<any> {
-  //   const httpOptions = {
-  //     headers: new HttpHeaders({
-  //       'Content-Type': 'application/json'
-  //     })
-  //   };
-  //   return this.http.post<any>(this.answerApiUrl, answers, httpOptions);
-  // }
 
   updateQuestion(question: Question): Observable<Question> {
     const url = `${this.apiUrl}/${question.id}`;

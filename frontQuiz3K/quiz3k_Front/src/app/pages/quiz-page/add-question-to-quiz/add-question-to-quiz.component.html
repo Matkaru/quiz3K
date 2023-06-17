@@ -39,7 +39,6 @@
         <div class="answer-wrapper" [formGroup]="getAnswerForm(i)">
           <input type="checkbox" formControlName="confirmedAnswer" (change)="toggleCorrectAnswer(getAnswerForm(i))" [checked]="answer">
           <input type="text" formControlName="answerForTheQuestion" required>
-<!--          <label>{{ answer }}</label>-->
           <button type="button" class="remove-answer" (click)="removeAnswer(getAnswerForm(i))">Usuń odpowiedź</button>
         </div>
       </div>
@@ -49,22 +48,17 @@
   </form>
 </div>
 </div>
-<div style="flex: 1;" class="question-list-wrapper">
-  <h2 class="list-title">Lista pytań:</h2>
-  <ol>
-    <li *ngFor="let question of questionList" class="qestion-list">{{question}}
-      <ul>
-<!--        <li *ngFor="let answer of answersForQuestion">-->
-<!--          {{ answer.answerForTheQuestion }} ({{ answer.correct ? 'Poprawna' : 'Niepoprawna' }})-->
-<!--        </li>-->
-      </ul>
-    </li>
-  </ol>
-</div>
-  <div>
-    <h4>Lista odpowiedzi:</h4>
-    <ul>
-      <li *ngFor="let answer of answers">{{ answer }}</li>
-    </ul>
+  <div style="flex: 1;" class="question-list-wrapper">
+    <h2 class="list-title">Lista pytań:</h2>
+    <ol>
+      <li *ngFor="let question of questionList" class="question-list">
+        {{ question.questionText }}
+        <ul>
+          <li *ngFor="let answer of question.answers">
+            {{ answer}}
+          </li>
+        </ul>
+      </li>
+    </ol>
   </div>
 </div>

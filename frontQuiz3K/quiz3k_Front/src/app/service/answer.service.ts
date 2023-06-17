@@ -21,13 +21,8 @@ export class AnswerService {
     return this.http.post<Answer>(this.apiUrl, answer, httpOptions);
   }
 
-  getAnswersByQuestionId(questionId: number): Observable<Answer[]> {
-    return this.http.get<Answer[]>(`${this.apiUrl}?questionId=${questionId}`);
-  }
-  getAnswersByQuestion(question: Question): Answer[] {
-    return this.answers.filter(answer => answer.answerQuestionId === parseInt(question.id, 10));
-  }
-  getAllAnswers(): Observable<string[]> {
-    return this.http.get<string[]>(this.apiUrl);
+  getAnswersByQuestion(answerQuestionId: number): Observable<Answer[]> {
+    const url = `${this.apiUrl}?answerQuestionId=${answerQuestionId}`;
+    return this.http.get<Answer[]>(url);
   }
 }
