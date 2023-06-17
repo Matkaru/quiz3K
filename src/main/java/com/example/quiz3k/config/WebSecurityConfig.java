@@ -41,6 +41,8 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/answers/{id}").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/questions").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/questions").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/questions/{id}").authenticated()
+
                 )
         );
 

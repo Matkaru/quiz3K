@@ -5,6 +5,7 @@ import { QuestionService } from '../../../service/question.service';
 import { AnswerService } from '../../../service/answer.service';
 import { AuthService } from '../../auth-page/auth.service';
 import { Answer, Question } from './question.model';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-add-question-to-quiz',
@@ -37,6 +38,7 @@ export class AddQuestionToQuizComponent implements OnInit {
   showCheckboxInfo: boolean = false;
 
   constructor(
+    private http: HttpClient,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -179,7 +181,6 @@ export class AddQuestionToQuizComponent implements OnInit {
     const questionType = this.questionForm.value.questionType;
     this.showCheckboxInfo = questionType === 'multiple';
   }
-  // private question: any;
 
   loadAnswersForQuestions() {
     if (this.questionList) {
@@ -206,5 +207,20 @@ export class AddQuestionToQuizComponent implements OnInit {
     }
   }
 
+  editQuestion(id) {
+
+  }
+
+  deleteQuestion(id: number) {
+    this.questionService.deleteQuestion(id).subscribe(
+      () => {
+        console.log('Pytanie zostało usunięte');
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Wystąpił błąd podczas usuwania pytania:', error);
+      }
+    );
+  }
 }
 

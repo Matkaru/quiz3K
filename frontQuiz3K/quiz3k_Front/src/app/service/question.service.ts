@@ -10,14 +10,11 @@ import {Question} from "../pages/quiz-page/add-question-to-quiz/question.model";
 })
 export class QuestionService {
   private apiUrl = 'http://localhost:8080/api/questions';
-  // private answerApiUrl = 'http://localhost:8080/api/answers';
+
 
   constructor(private http: HttpClient) {}
 
-  // getQuestionsByQuiz(questionQuizId: number): Observable<Question[]> {
-  //   const url = `${this.apiUrl}?questionQuizId=${questionQuizId}`;
-  //   return this.http.get<Question[]>(url);
-  // }
+
   getQuestionsByQuiz(questionQuizId: number): Observable<Question[]> {
     const url = `${this.apiUrl}?questionQuizId=${questionQuizId}`;
     return this.http.get<Question[]>(url).pipe(
@@ -40,8 +37,7 @@ export class QuestionService {
     return this.http.put<Question>(url, question);
   }
 
-  deleteQuestion(questionId: string): Observable<void> {
-    const url = `${this.apiUrl}/${questionId}`;
-    return this.http.delete<void>(url);
+  deleteQuestion(id: number) {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`)
   }
 }

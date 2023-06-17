@@ -58,6 +58,8 @@
             {{ answer}}
           </li>
         </ul>
+        <button (click)="editQuestion(question.id)" class="question-list-wrapper-button">Edytuj</button>
+        <button (click)="deleteQuestion(question.id)" class="question-list-wrapper-button">Usuń</button>
       </li>
     </ol>
   </div>

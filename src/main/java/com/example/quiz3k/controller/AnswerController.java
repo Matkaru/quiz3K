@@ -34,11 +34,6 @@ public class AnswerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAnswer);
     }
 
-//    @GetMapping
-//    public List<String> getAllAnswers() {
-//        return answerService.getAllAnswers();
-//    }
-
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteAnswer(@PathVariable("id") Long id) {
         answerService.deleteAnswer(id);
