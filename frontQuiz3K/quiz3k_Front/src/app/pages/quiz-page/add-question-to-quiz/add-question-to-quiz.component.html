@@ -56,6 +56,7 @@
         <ul>
           <li *ngFor="let answer of question.answers" class="answer-list">
             {{ answer}}
+            <span *ngIf="answer.confirmedAnswer" class="correct-answer">Poprawna odpowiedź</span>
           </li>
         </ul>
         <button (click)="editQuestion(question.id)" class="question-list-wrapper-button">Edytuj</button>
