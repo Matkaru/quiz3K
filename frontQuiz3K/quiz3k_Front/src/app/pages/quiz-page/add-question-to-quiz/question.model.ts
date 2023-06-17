@@ -10,7 +10,7 @@ export interface Question {
 export interface Answer {
   id: number;
   answerForTheQuestion: string;
-  correct: boolean;
+  confirmedAnswer: boolean;
   // deleted?: boolean;
   answerQuestionId: number;
 

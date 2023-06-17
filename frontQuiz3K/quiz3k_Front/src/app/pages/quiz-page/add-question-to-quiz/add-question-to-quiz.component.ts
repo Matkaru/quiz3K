@@ -147,7 +147,7 @@ export class AddQuestionToQuizComponent implements OnInit {
     const newAnswerFormGroup = this.formBuilder.group({
       id: '',
       answerForTheQuestion: '',
-      correct: false
+      confirmedAnswer: false
       // deleted: false
     });
 
@@ -164,7 +164,7 @@ export class AddQuestionToQuizComponent implements OnInit {
     const answerControl = this.getAnswerForm(answerIndex);
     const answer = this.newQuestion.answers[answerIndex];
 
-    answerControl.get('correct').setValue(!answer.correct);
+    answerControl.get('confirmedAnswer').setValue(!answer.confirmedAnswer);
   }
 
   removeAnswer(answerFormGroup: FormGroup) {

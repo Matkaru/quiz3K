@@ -37,7 +37,7 @@
     <div *ngFor="let answer of newQuestion.answers; let i = index">
       <div *ngIf="!answer.deleted">
         <div class="answer-wrapper" [formGroup]="getAnswerForm(i)">
-          <input type="checkbox" formControlName="correct" (change)="toggleCorrectAnswer(getAnswerForm(i))" [checked]="answer.correct">
+          <input type="checkbox" formControlName="confirmedAnswer" (change)="toggleCorrectAnswer(getAnswerForm(i))" [checked]="answer">
           <input type="text" formControlName="answerForTheQuestion" required>
 <!--          <label>{{ answer }}</label>-->
           <button type="button" class="remove-answer" (click)="removeAnswer(getAnswerForm(i))">Usuń odpowiedź</button>
