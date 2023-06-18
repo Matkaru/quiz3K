@@ -52,13 +52,16 @@
     <h2 class="list-title">Lista pytań:</h2>
     <ol>
       <li *ngFor="let question of questionList" class="question-list">
-        {{ question.questionText }}
-        <ul>
+        <div class="question-info">
+       <span class="question-text"> {{ question.questionText }}</span>
+       <span class="question-type">{{ question.questionType === 'SINGLE' ? '  (Jedna odpowiedź)' : '  (Wiele odpowiedzi)' }}</span>
+        </div>
+        <ol type="a">
           <li *ngFor="let answer of question.answers" class="answer-list">
-            {{ answer}}
-            <span *ngIf="answer.confirmedAnswer" class="correct-answer">Poprawna odpowiedź</span>
+            {{ answer.answerForTheQuestion}}
+            <span *ngIf="answer.confirmedAnswer" class="correct-answer">✔</span>
           </li>
-        </ul>
+        </ol>
         <button (click)="editQuestion(question.id)" class="question-list-wrapper-button">Edytuj</button>
         <button (click)="deleteQuestion(question.id)" class="question-list-wrapper-button">Usuń</button>
       </li>

@@ -49,15 +49,19 @@ public class AnswerService {
         answerRepository.deleteById(id);
     }
 
-    public List<String> getAnswersByQuestionId(Long answerQuestionId) {
-        List<String> answerForTheQuestion = new ArrayList<>();
+//    public List<String> getAnswersByQuestionId(Long answerQuestionId) {
+//        List<String> answerForTheQuestion = new ArrayList<>();
+//        List<AnswerEntity> answers = answerRepository.findByAnswerQuestionId(answerQuestionId);
+//
+//        answerForTheQuestion = answers.stream()
+//                .map(AnswerEntity::getAnswerForTheQuestion)
+//                .collect(Collectors.toList());
+//        return answerForTheQuestion;
+//
+//    }
+    public List<AnswerEntity> getAnswersByQuestionId(Long answerQuestionId) {
         List<AnswerEntity> answers = answerRepository.findByAnswerQuestionId(answerQuestionId);
-
-        answerForTheQuestion = answers.stream()
-                .map(AnswerEntity::getAnswerForTheQuestion)
-                .collect(Collectors.toList());
-        return answerForTheQuestion;
-
+        return answers;
     }
 
 }

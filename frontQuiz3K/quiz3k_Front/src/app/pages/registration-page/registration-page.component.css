@@ -1,7 +1,9 @@
 body {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 .form-title{
   height: auto;
@@ -40,3 +42,4 @@ form input {
 .error-message{
   color: brown;
 }
+

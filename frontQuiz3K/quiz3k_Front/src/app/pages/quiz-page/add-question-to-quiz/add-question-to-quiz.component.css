@@ -139,3 +139,12 @@ button{
   border-radius: 5px;
   font-size: 10px;
 }
+.correct-answer{
+  color: #5dab2a;
+}
+.question-text{
+  font-weight: bold;
+}
+.question-type{
+  font-size: 14px;
+}

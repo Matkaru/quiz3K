@@ -41,7 +41,7 @@ public class AnswerController {
     }
 
     @GetMapping
-    public List<String> getAnswersByQuestionId(@RequestParam("answerQuestionId") Long answerQuestionId) {
+    public List<AnswerEntity> getAnswersByQuestionId(@RequestParam("answerQuestionId") Long answerQuestionId) {
         return answerService.getAnswersByQuestionId(answerQuestionId);
     }
 }

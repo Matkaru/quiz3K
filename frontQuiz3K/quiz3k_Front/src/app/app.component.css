@@ -45,6 +45,7 @@ img {
 
 .all-page {
   height: auto;
+  min-height: 100%;
   background-color: #cae371;
 }
 
@@ -67,8 +68,4 @@ img {
   text-align: center
 }
 
-body{
-  height: 100%;
-
-}
 
