@@ -1,6 +1,7 @@
 img {
   width: 150px;
   height: auto;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
 .header {
   display: flex;
