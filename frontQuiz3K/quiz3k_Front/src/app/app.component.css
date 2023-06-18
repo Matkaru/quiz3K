@@ -51,8 +51,9 @@ img {
 
 .start-page-header {
   color: #f32049;
-  font-size: 50px;
-
+  font-size: 60px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  transform: perspective(100px) rotateX(10deg);
   text-align: center;
 }
 
