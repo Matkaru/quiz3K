@@ -42,4 +42,37 @@ form input {
 .error-message{
   color: brown;
 }
+.sokol {
+  width: 450px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
 
+}
+.body{
+  height: auto;
+}
+.form-wrapper {
+  width: 50%;
+  float: left;
+  margin-right: 20px; /* Dodaj margines z prawej strony */
+}
+.ciekawostka {
+  margin-top: 5%;
+  float: right;
+  width: 40%;
+}
+.ciek-text{
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+.text{
+  text-align: center;
+}
+.register-button{
+  display: flex;
+  justify-content: center;
+  margin-left: 25%;
+}
