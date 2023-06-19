@@ -1,0 +1,37 @@
+<h2 class="quizName">Nazwa Quizu: {{ copyQuizName }}</h2>
+<h2 class="quizName">ID: {{ quizId }}</h2>
+<header>
+  <div class="right-corner">
+    <button (click)="logout()">Wyloguj</button>
+  </div>
+
+</header>
+<div style="display: flex;">
+  <div style="flex: 1; padding-right: 20px;">
+    <div class="question-section">
+
+      <h3>Lista pytań:</h3>
+      <form (submit)="addQuestion()" [formGroup]="questionForm">
+      </form>
+    </div>
+    <div *ngIf="showCheckboxInfo || questionForm.value.questionType === 'single'">
+      <label class="checkbox-info">Proszę o zaznaczenie poprawnej odpowiedzi:</label>
+    </div>
+    <div>
+    <ol>
+      <div *ngFor="let question of questionList" class="question-list">
+        <div class="question-info">
+          <span class="question-text"> {{ question.questionText }}</span>
+          <span class="question-type">{{ question.questionType === 'SINGLE' ? '  (Jedna odpowiedź)' : '  (Wiele odpowiedzi)' }}</span>
+        </div>
+        <ol type="a">
+          <li *ngFor="let answer of question.answers" class="answer-list">
+            {{ answer.answerForTheQuestion}}
+            <span *ngIf="answer.confirmedAnswer" class="correct-answer">✔</span>
+            <input _ngcontent-ng-c1352431728="" type="checkbox" formcontrolname="confirmedAnswer" ng-reflect-name="confirmedAnswer" class="ng-untouched ng-pristine ng-valid">
+          </li>
+    </ol>
+  </div>
+    </ol>
+  </div>
+</div>
