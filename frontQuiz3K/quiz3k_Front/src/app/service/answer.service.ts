@@ -25,4 +25,8 @@ export class AnswerService {
     const url = `${this.apiUrl}?answerQuestionId=${answerQuestionId}`;
     return this.http.get<Answer[]>(url);
   }
+  updateAnswer(answer: Answer): Observable<Answer> {
+    const url = `${this.apiUrl}/${answer.id}`;
+    return this.http.put<Answer>(url, answer);
+  }
 }

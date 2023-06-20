@@ -23,7 +23,7 @@
   margin-bottom: 5px;
 }
 .question-section {
-  text-align: center; /* Wyśrodkowuje zawartość w poziomie */
+  text-align: center;
 }
 
 .question-section textarea {

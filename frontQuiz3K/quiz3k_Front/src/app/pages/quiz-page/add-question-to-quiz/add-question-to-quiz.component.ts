@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { QuestionService } from '../../../service/question.service';
-import { AnswerService } from '../../../service/answer.service';
-import { AuthService } from '../../auth-page/auth.service';
-import { Answer, Question } from './question.model';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
+import {QuestionService} from '../../../service/question.service';
+import {AnswerService} from '../../../service/answer.service';
+import {AuthService} from '../../auth-page/auth.service';
+import {Answer, Question} from './question.model';
 import {HttpClient} from "@angular/common/http";
 
 @Component({
@@ -21,6 +21,11 @@ export class AddQuestionToQuizComponent implements OnInit {
   quizId: number;
   questionQuizId: number;
   questionType: string;
+  editingQuestionId: number = null;
+  editingQuestionText: string = '';
+  editingQuestionType: string = '';
+  editingAnswers: any[] = [];
+
   newQuestion: {
     questionQuizId: string;
     id: string;
@@ -28,7 +33,7 @@ export class AddQuestionToQuizComponent implements OnInit {
     questionText: string;
     answers: any[];
   } = {
-    id: '',
+    id: null,
     questionText: '',
     questionType: 'single',
     questionQuizId: '',
@@ -67,6 +72,7 @@ export class AddQuestionToQuizComponent implements OnInit {
       this.getQuestionsByQuiz();
     });
   }
+
   getQuestionsByQuiz() {
     this.questionService.getQuestionsByQuiz(this.questionQuizId).subscribe(
       (questions: Question[]) => {
@@ -189,6 +195,7 @@ export class AddQuestionToQuizComponent implements OnInit {
       }
     }
   }
+
   getAnswersByQuestionId(questionId: number) {
     this.answerService.getAnswersByQuestion(questionId).subscribe(
       (answers: Answer[]) => {
@@ -207,10 +214,6 @@ export class AddQuestionToQuizComponent implements OnInit {
     }
   }
 
-  editQuestion(id) {
-
-  }
-
   deleteQuestion(id: number) {
     this.questionService.deleteQuestion(id).subscribe(
       () => {
@@ -221,6 +224,63 @@ export class AddQuestionToQuizComponent implements OnInit {
         console.error('Wystąpił błąd podczas usuwania pytania:', error);
       }
     );
+  }
+  editQuestion(question: Question) {
+    this.editingQuestionId = question.id;
+    this.editingQuestionText = question.questionText;
+    this.editingQuestionType = question.questionType;
+    this.editingAnswers = [...question.answers];
+  }
+
+  saveEditedQuestion(question: Question) {
+    question.questionText = this.editingQuestionText;
+    question.questionType = this.editingQuestionType;
+
+    this.questionService.updateQuestion(question).subscribe(
+      (response: Question) => {
+        console.log('Pytanie zostało zaktualizowane:', response);
+        this.updateAnswers(question);
+        this.cancelEditing();
+      },
+      (error) => {
+        console.error('Wystąpił błąd podczas aktualizowania pytania:', error);
+      }
+    );
+  }
+
+  updateAnswers(question: Question) {
+    const newAnswers = this.editingAnswers.filter((answer: Answer) => answer.id === null);
+    const updatedAnswers = this.editingAnswers.filter((answer: Answer) => answer.id !== null);
+
+    newAnswers.forEach((answer: Answer) => {
+      answer.answerQuestionId = question.id;
+      this.answerService.createAnswer(answer).subscribe(
+        (response: Answer) => {
+          console.log('Nowa odpowiedź została zapisana:', response);
+        },
+        (error) => {
+          console.error('Wystąpił błąd podczas zapisywania nowej odpowiedzi:', error);
+        }
+      );
+    });
+
+    updatedAnswers.forEach((answer: Answer) => {
+      this.answerService.updateAnswer(answer).subscribe(
+        (response: Answer) => {
+          console.log('Odpowiedź została zaktualizowana:', response);
+        },
+        (error) => {
+          console.error('Wystąpił błąd podczas aktualizowania odpowiedzi:', error);
+        }
+      );
+    });
+  }
+
+  cancelEditing() {
+    this.editingQuestionId = null;
+    this.editingQuestionText = '';
+    this.editingQuestionType = '';
+    this.editingAnswers = [];
   }
 }
 

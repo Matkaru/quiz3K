@@ -53,17 +53,32 @@
     <ol>
       <li *ngFor="let question of questionList" class="question-list">
         <div class="question-info">
-       <span class="question-text"> {{ question.questionText }}</span>
-       <span class="question-type">{{ question.questionType === 'SINGLE' ? '  (Jedna odpowiedź)' : '  (Wiele odpowiedzi)' }}</span>
+          <span class="question-text">{{ question.questionText }}</span>
+          <span class="question-type">{{ question.questionType === 'SINGLE' ? '  (Jedna odpowiedź)' : '  (Wiele odpowiedzi)' }}</span>
         </div>
         <ol type="a">
           <li *ngFor="let answer of question.answers" class="answer-list">
-            {{ answer.answerForTheQuestion}}
+            {{ answer.answerForTheQuestion }}
             <span *ngIf="answer.confirmedAnswer" class="correct-answer">✔</span>
           </li>
         </ol>
-        <button (click)="editQuestion(question.id)" class="question-list-wrapper-button">Edytuj</button>
-        <button (click)="deleteQuestion(question.id)" class="question-list-wrapper-button">Usuń</button>
+        <div class="question-info" *ngIf="editingQuestionId !== question.id">
+          <!-- Wyświetlanie pytania -->
+        </div>
+        <div class="question-edit" *ngIf="editingQuestionId === question.id">
+          <textarea [(ngModel)]="editingQuestionText"></textarea>
+          <!-- Wyświetlanie odpowiedzi -->
+          <div *ngFor="let answer of editingAnswers; let i = index">
+            <input type="text" [(ngModel)]="answer.answerForTheQuestion">
+            <!-- Dodaj obsługę zmiany poprawności odpowiedzi, jeśli jest wymagane -->
+            <input type="checkbox" [(ngModel)]="answer.confirmedAnswer">
+            <button (click)="removeAnswer(answer)" class="question-list-wrapper-button">Usuń odpowiedź</button>
+          </div>
+          <button (click)="saveEditedQuestion(question)" class="question-list-wrapper-button">Zapisz pytanie</button>
+          <button (click)="cancelEditing()" class="question-list-wrapper-button">Anuluj</button>
+        </div>
+        <button *ngIf="editingQuestionId !== question.id" (click)="editQuestion(question)" class="question-list-wrapper-button">Edytuj</button>
+        <button *ngIf="editingQuestionId !== question.id" (click)="deleteQuestion(question.id)" class="question-list-wrapper-button">Usuń</button>
       </li>
     </ol>
   </div>

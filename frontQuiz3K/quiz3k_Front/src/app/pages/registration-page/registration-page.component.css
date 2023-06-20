@@ -7,7 +7,7 @@ body {
 }
 .form-title{
   font-size: 30px;
-  margin-left: 15%;
+  margin: 0 auto;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   color: #f32049;
@@ -36,6 +36,7 @@ form {
   align-items: center;
   background-color: #c8f196;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  border: 1px solid #faf1b2;
 
 }
 form input {
@@ -53,27 +54,31 @@ form input {
   color: brown;
 }
 .sokol {
-  align-items: center;
-  display: flex;
   width: 450px;
   height: auto;
-  margin-left: 20%;
-  margin-top: 20px;
+  margin-left:30%;
+  margin-bottom: 10%;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  display: block;
 
 }
 .body{
   height: auto;
 }
 .form-wrapper {
-  width: 50%;
+  width: 60%;
   float: left;
-  margin-right: 20px; /* Dodaj margines z prawej strony */
+  margin-right: 20px;
 }
 .ciekawostka {
-  margin-top: 5%;
+  margin-right: 5%;
+  margin-top:7%;
   float: right;
-  width: 40%;
+  width: auto;
+  height: 60%;
+  background-color: beige;
+  padding: 20px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
 .ciek-text{
   font-weight: bold;
@@ -90,4 +95,15 @@ form input {
 .register-button{
   display: flex;
   justify-content: center;
+}
+.success-message{
+  margin-top: 20px;
+  text-align: center;
+  color: #604615;
+}
+.light-bulb{
+  margin-left: 5px;
+  width: 150px;
+  height: auto;
+  display: block;
 }
