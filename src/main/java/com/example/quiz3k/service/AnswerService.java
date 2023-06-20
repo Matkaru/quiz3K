@@ -63,5 +63,8 @@ public class AnswerService {
         List<AnswerEntity> answers = answerRepository.findByAnswerQuestionId(answerQuestionId);
         return answers;
     }
+    public AnswerEntity updateAnswer(AnswerEntity answer) {
+        return answerRepository.save(answer);
+    }
 
 }

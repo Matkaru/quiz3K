@@ -26,6 +26,7 @@ button {
 .title {
   text-align: center;
   color: #604615;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .description {
@@ -45,6 +46,11 @@ button {
 .description-container {
   text-align: center;
   background-color: #286015;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  border: 1px solid #faf1b2;
+  width: 70%;
+  margin: 0 auto;
+
 
 }
 .description-title{

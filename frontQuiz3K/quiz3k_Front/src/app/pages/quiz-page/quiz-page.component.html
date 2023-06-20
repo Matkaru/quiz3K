@@ -11,7 +11,7 @@
   </div>
 </header>
 
-<h1>Strona quizów</h1>
+<h1 class="page-title">Twoje Quizy</h1>
 <div>
   <input type="text" id="nazwaQuizu" [(ngModel)]="quizName" name="nazwaQuizu">
 </div>
@@ -26,8 +26,9 @@
   </div>
 </div>
 
-<h2>Lista quizów:</h2>
-<table mat-table [dataSource]="quizList" class="mat-elevation-z8">
+<h2 class="list-title">Lista quizów:</h2>
+<div class="list-box">
+<table mat-table [dataSource]="quizList" class="quiz-list">
   <ng-container matColumnDef="lp">
     <th mat-header-cell *matHeaderCellDef>ID.</th>
     <td mat-cell *matCellDef="let quiz">{{ quiz.id }}</td>
@@ -62,6 +63,6 @@
   <tr mat-header-row *matHeaderRowDef="['lp', 'nazwa', 'actions']"></tr>
   <tr mat-row *matRowDef="let quiz; columns: ['lp', 'nazwa', 'actions']"></tr>
 </table>
-
+</div>
 </body>
 </html>

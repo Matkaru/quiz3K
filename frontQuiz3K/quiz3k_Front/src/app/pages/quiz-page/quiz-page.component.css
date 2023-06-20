@@ -56,3 +56,19 @@ button{
   text-align: right;
 }
 
+.list-box{
+  margin: 20px;
+  border: 1px solid #000;
+  padding: 10px;
+  background-color:beige;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+.list-title{
+  color: #604615;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+.page-title{
+  color: #f32049;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  font-size: 50px;
+}
