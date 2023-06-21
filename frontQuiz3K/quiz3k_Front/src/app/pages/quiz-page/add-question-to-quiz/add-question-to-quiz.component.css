@@ -148,3 +148,6 @@ button{
 .question-type{
   font-size: 14px;
 }
+.quiz-link{
+  width: 50%;
+}

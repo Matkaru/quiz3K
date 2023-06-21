@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import {AuthInterceptorService} from "./pages/auth-page/auth-interceptor.service";
 import {MatInputModule} from "@angular/material/input";
 import { AddQuestionToQuizComponent } from './pages/quiz-page/add-question-to-quiz/add-question-to-quiz.component';
+import {ShareProjectComponent} from "./pages/share-project/share-project.component";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { AddQuestionToQuizComponent } from './pages/quiz-page/add-question-to-qu
     LoginPageComponent,
     QuizPageComponent,
     AddQuestionToQuizComponent,
+    ShareProjectComponent,
 
 
 
@@ -38,7 +40,8 @@ import { AddQuestionToQuizComponent } from './pages/quiz-page/add-question-to-qu
   exports: [
     RegistrationPageComponent,
     QuizPageComponent,
-    AddQuestionToQuizComponent
+    AddQuestionToQuizComponent,
+    ShareProjectComponent
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]

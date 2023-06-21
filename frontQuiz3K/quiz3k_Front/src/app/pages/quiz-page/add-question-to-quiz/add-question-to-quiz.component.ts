@@ -25,6 +25,7 @@ export class AddQuestionToQuizComponent implements OnInit {
   editingQuestionText: string = '';
   editingQuestionType: string = '';
   editingAnswers: any[] = [];
+  generatedLink: string = '';
 
   newQuestion: {
     questionQuizId: string;
@@ -281,6 +282,9 @@ export class AddQuestionToQuizComponent implements OnInit {
     this.editingQuestionText = '';
     this.editingQuestionType = '';
     this.editingAnswers = [];
+  }
+  generateLink() {
+    this.generatedLink = window.location.origin + '/api/share/quiz/' + this.quizId +"/" + this.quizName;
   }
 }
 

@@ -5,13 +5,14 @@ import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 @Data
-public class CopyQuiz {
+public class QuizData {
+    private String email;
 
     private Long id;
 
-    private String copyQuizName;
+    private String quizName;
 
-    private Long questionQuizId;
+    private Long quizId;
 
     private String copyQuestionText;
 
@@ -26,10 +27,10 @@ public class CopyQuiz {
 
     private Long userAnswer;
 
-    public CopyQuiz() {
+    public QuizData() {
     }
 
-    public CopyQuiz(Long questionQuizId, String quizName, Long answerQuestionId, String questionText,
+    public QuizData(Long questionQuizId, String quizName, Long answerQuestionId, String questionText,
                     QuestionType questionType, Long answerId, String answerForTheQuestion) {
     }
 }

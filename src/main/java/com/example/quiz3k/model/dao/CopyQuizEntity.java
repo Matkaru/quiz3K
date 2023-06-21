@@ -13,11 +13,12 @@ public class CopyQuizEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String copyQuizName;
+    private String quizName;
 
     private Long questionQuizId;
+    private Long quizId;
 
-    private String copyQuestionText;
+    private String questionText;
 
     @Enumerated
     private QuestionType questionType;
@@ -26,7 +27,7 @@ public class CopyQuizEntity {
 
     private Long answerId;
 
-    private String copyAnswerForTheQuestion;
+    private String AnswerForTheQuestion;
 
     private Long userAnswer;
 }
