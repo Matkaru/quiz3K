@@ -6,11 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CopyQuizService {
-  private apiUrl = 'http://localhost:8080/api/share/quiz/{id}';
+  private apiUrl = 'http://localhost:8080/api/share/quiz';
 
   constructor(private http: HttpClient) { }
 
   saveQuiz(quizData: any): Observable<any> {
-    return this.http.post(this.apiUrl , quizData);
+    const url = this.apiUrl.replace('{id}', '');
+    return this.http.post(url, quizData);
   }
 }

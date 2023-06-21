@@ -23,7 +23,7 @@ public class CopyQuizController {
         this.questionService = questionService;
 
     }
-    @PostMapping(path = "/api/share/quiz/quizzes")
+    @PostMapping(path = "/api/share/quiz")
     public ResponseEntity<?> saveQuiz(@RequestBody QuizData quizData) {
 
         System.out.println("Odebrano quizData:");

@@ -37,6 +37,7 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/users/info").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/answers").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/answers").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/questions/{id}").authenticated()
 //                        .requestMatchers(HttpMethod.GET, "/api/answers").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/answers/{id}").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/answers/{id}").authenticated()
@@ -59,10 +60,9 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/users")
                 .requestMatchers(HttpMethod.GET, "/api/users")
                 .requestMatchers(HttpMethod.GET, "/api/quiz/{id}")
-                .requestMatchers(HttpMethod.PUT, "/api/questions/{id}")
                 .requestMatchers(HttpMethod.GET, "/api/questions")
                 .requestMatchers(HttpMethod.GET, "/api/answers")
-                .requestMatchers(HttpMethod.PUT, "/api/share/quiz/quizzes");
+                .requestMatchers(HttpMethod.POST, "/api/share/quiz");
     }
 
     @Bean
