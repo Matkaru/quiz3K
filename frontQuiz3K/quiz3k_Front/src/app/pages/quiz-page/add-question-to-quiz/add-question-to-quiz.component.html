@@ -49,10 +49,17 @@
 </div>
 </div>
   <div style="flex: 1;" class="question-list-wrapper">
+    <div style="flex: 1; padding-right: 20px;">
+      <button (click)="generateLink()">Wygeneruj link do udostępnienia</button>
+      <div *ngIf="generatedLink" class="link-section">
+        <label>Wygenerowany link:</label>
+        <input type="text" [value]="generatedLink" readonly class="quiz-link">
+      </div>
+    </div>
     <h2 class="list-title">Lista pytań:</h2>
     <ol>
       <li *ngFor="let question of questionList" class="question-list">
-        <div class="question-info">
+        <div >
           <span class="question-text">{{ question.questionText }}</span>
           <span class="question-type">{{ question.questionType === 'SINGLE' ? '  (Jedna odpowiedź)' : '  (Wiele odpowiedzi)' }}</span>
         </div>
@@ -63,14 +70,11 @@
           </li>
         </ol>
         <div class="question-info" *ngIf="editingQuestionId !== question.id">
-          <!-- Wyświetlanie pytania -->
         </div>
         <div class="question-edit" *ngIf="editingQuestionId === question.id">
           <textarea [(ngModel)]="editingQuestionText"></textarea>
-          <!-- Wyświetlanie odpowiedzi -->
           <div *ngFor="let answer of editingAnswers; let i = index">
             <input type="text" [(ngModel)]="answer.answerForTheQuestion">
-            <!-- Dodaj obsługę zmiany poprawności odpowiedzi, jeśli jest wymagane -->
             <input type="checkbox" [(ngModel)]="answer.confirmedAnswer">
             <button (click)="removeAnswer(answer)" class="question-list-wrapper-button">Usuń odpowiedź</button>
           </div>
