@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CopyQuizRepository extends CrudRepository<CopyQuizEntity, Long> {
-    // other repository methods
+
 }

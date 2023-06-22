@@ -1,10 +1,10 @@
 package com.example.quiz3k.service;
-
 import com.example.quiz3k.model.dao.CopyQuizEntity;
 import com.example.quiz3k.model.dto.QuizData;
 import com.example.quiz3k.repository.CopyQuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class CopyQuizService {
@@ -18,8 +18,12 @@ public class CopyQuizService {
 
     public void saveQuiz(QuizData quizData) {
         CopyQuizEntity copyQuiz = new CopyQuizEntity();
-        copyQuiz.setQuizName(quizData.getQuizName());
         copyQuiz.setQuizId(quizData.getQuizId());
+
+        for (Long userAnswerId : quizData.getUserAnswerIdList()) {
+            copyQuiz.addUserAnswerId(userAnswerId);
+        }
+
         copyRepo.save(copyQuiz);
     }
 }

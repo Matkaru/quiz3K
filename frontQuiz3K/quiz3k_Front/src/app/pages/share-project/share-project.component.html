@@ -22,7 +22,7 @@
 
 </header>
 <div style="flex: 1;" class="question-list-wrapper">
-  <div style="flex: 1; padding-right: 20px;" >
+  <div style="flex: 1; padding-right: 20px;">
     <div class="question-section">
 
       <h2 class="list-title">Lista pytań:</h2>
@@ -30,7 +30,8 @@
         <li *ngFor="let question of questionList" class="question-list">
           <div class="question-info">
             <span class="question-text">{{ question.questionText }}</span>
-            <span class="question-type">{{ question.questionType === 'SINGLE' ? '  (Jedna odpowiedź)' : '  (Wiele odpowiedzi)' }}</span>
+            <span
+              class="question-type">{{ question.questionType === 'SINGLE' ? '  (Jedna odpowiedź)' : '  (Wiele odpowiedzi)' }}</span>
           </div>
           <ol type="a">
             <li *ngFor="let answer of question.answers" class="answer-list">
@@ -41,6 +42,6 @@
             </li>
           </ol>
       </ol>
-</div>
-</div>
+    </div>
+  </div>
 </div>

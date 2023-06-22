@@ -1,8 +1,7 @@
 package com.example.quiz3k.model.dao;
-
-import com.example.quiz3k.enums.QuestionType;
 import jakarta.persistence.*;
 import lombok.Data;
+import java.util.*;
 
 @Table(name = "copy_quiz")
 @Entity
@@ -12,22 +11,18 @@ public class CopyQuizEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String quizName;
-
-    private Long questionQuizId;
     private Long quizId;
-
-    private String questionText;
-
-    @Enumerated
-    private QuestionType questionType;
-
     private Long answerQuestionId;
 
     private Long answerId;
+    @ElementCollection
+    private List<Long> userAnswerIdList;
 
-    private String AnswerForTheQuestion;
 
-    private Long userAnswer;
+    public void addUserAnswerId(Long userAnswerId) {
+        if (userAnswerIdList == null) {
+            userAnswerIdList = new ArrayList<>();
+        }
+        userAnswerIdList.add(userAnswerId);
+    }
 }

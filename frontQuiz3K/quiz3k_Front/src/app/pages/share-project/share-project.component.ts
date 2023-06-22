@@ -20,6 +20,9 @@ export class ShareProjectComponent implements OnInit {
   questionQuizId: number;
   questionList: any[] = [];
   email: string;
+  userAnswer: any;
+  selectedUserAnswerId: number;
+  selectedAnswerQuestionId: number;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -42,10 +45,13 @@ export class ShareProjectComponent implements OnInit {
 
   saveQuiz() {
     const quizData = {
-      quizName: this.quizName,
       quizId: this.quizId,
-      email: this.email,
-      questionList: this.questionList
+      questionList: this.questionList.map(question => ({
+        id: question.id,
+        answers: question.answers.map(answer => answer.id),
+        userAnswerIdList: question.answers.filter(answer => answer.isSelected).map(answer => answer.id)
+      })),
+      email: this.email
     };
 
     this.copyQuizService.saveQuiz(quizData)
@@ -94,6 +100,9 @@ export class ShareProjectComponent implements OnInit {
     const question = this.questionList.find(q => q.id === questionId);
     if (question) {
       question.answers = answers;
+
+      this.selectedAnswerQuestionId = questionId;
+      this.selectedUserAnswerId = answers[0].id;
     }
   }
 }

@@ -11,7 +11,8 @@ export class CopyQuizService {
   constructor(private http: HttpClient) { }
 
   saveQuiz(quizData: any): Observable<any> {
-    const url = this.apiUrl.replace('{id}', '');
+    const url = `${this.apiUrl}/${quizData.quizId}`;
     return this.http.post(url, quizData);
   }
+
 }
