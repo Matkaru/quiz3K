@@ -12,9 +12,9 @@ public class CopyQuizEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long quizId;
-    private Long answerQuestionId;
+//    private Long answerQuestionId;
 
-    private Long answerId;
+//    private Long answerId;
     @ElementCollection
     private List<Long> userAnswerIdList;
 

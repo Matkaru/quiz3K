@@ -44,16 +44,16 @@ export class ShareProjectComponent implements OnInit {
   }
 
   saveQuiz() {
+
     const quizData = {
       quizId: this.quizId,
-      questionList: this.questionList.map(question => ({
-        id: question.id,
-        answers: question.answers.map(answer => answer.id),
-        userAnswerIdList: question.answers.filter(answer => answer.isSelected).map(answer => answer.id)
-      })),
-      email: this.email
+      questionId: this.selectedAnswerQuestionId,
+      email: this.email,
+      userAnswerIdList: this.questionList.map(question => (
+         question.answers.filter(answer => answer.isSelected).map(answer => answer.id)
+      ))
     };
-
+    console.log(quizData);
     this.copyQuizService.saveQuiz(quizData)
       .subscribe(
         (response) => {
