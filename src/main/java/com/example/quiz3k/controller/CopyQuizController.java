@@ -19,7 +19,7 @@ public class CopyQuizController {
         this.copyService = copyService;
     }
 
-    @PostMapping(path = "/api/share/quiz")
+    @PostMapping(path = "/api/share/quiz/{id}")
     public ResponseEntity<String> saveQuiz(@RequestBody QuizData quizData) {
         copyService.saveQuiz(quizData);
         return ResponseEntity.ok("Quiz został zapisany pomyślnie");

@@ -46,7 +46,7 @@ public class WebSecurityConfig {
 //                        .requestMatchers(HttpMethod.GET, "/api/questions").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/questions/{id}").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/questions/{id}").authenticated()
-//                        .requestMatchers(HttpMethod.PUT, "/api/share/quiz/quizzes").authenticated()
+//
                 )
         );
 
@@ -62,7 +62,7 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/quiz/{id}")
                 .requestMatchers(HttpMethod.GET, "/api/questions")
                 .requestMatchers(HttpMethod.GET, "/api/answers")
-                .requestMatchers(HttpMethod.POST, "/api/share/quiz");
+                .requestMatchers(HttpMethod.POST, "/api/share/quiz/*");
     }
 
     @Bean
