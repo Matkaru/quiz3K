@@ -1,9 +1,7 @@
 package com.example.quiz3k.controller;
 
 import com.example.quiz3k.model.dto.QuizData;
-import com.example.quiz3k.repository.CopyQuizRepository;
 import com.example.quiz3k.service.CopyQuizService;
-import com.example.quiz3k.service.QuestionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,9 +21,9 @@ public class CopyQuizController {
     }
 
     @PostMapping(path = "/api/share/quiz/{id}")
-    public ResponseEntity<String> saveQuiz(@RequestBody QuizData quizData) {
+    public ResponseEntity<QuizData> saveQuiz(@RequestBody QuizData quizData) {
         copyService.saveQuiz(quizData);
-        return ResponseEntity.ok("Quiz został zapisany pomyślnie");
+        return ResponseEntity.status(HttpStatus.CREATED).body(quizData);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

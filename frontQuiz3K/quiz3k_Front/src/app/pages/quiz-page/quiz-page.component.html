@@ -56,8 +56,8 @@
       </ng-template>
 
       <button (click)="goToAddQuestionToQuiz(quiz.id, quiz.quizName)" class="table-button">Uzupełnij</button>
+      <button (click)="shareStatistics(quiz.id)" class="table-button">Statystyki Quizu </button>
       <button (click)="deleteQuiz(quiz.id)" class="table-button">Usuń</button>
-    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="['lp', 'nazwa', 'actions']"></tr>

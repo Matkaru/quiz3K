@@ -13,6 +13,7 @@ import {AuthInterceptorService} from "./pages/auth-page/auth-interceptor.service
 import {MatInputModule} from "@angular/material/input";
 import { AddQuestionToQuizComponent } from './pages/quiz-page/add-question-to-quiz/add-question-to-quiz.component';
 import {ShareProjectComponent} from "./pages/share-project/share-project.component";
+import { QuizStatisticsComponent } from './pages/quiz-statistics/quiz-statistics.component';
 
 
 @NgModule({
@@ -24,6 +25,8 @@ import {ShareProjectComponent} from "./pages/share-project/share-project.compone
     QuizPageComponent,
     AddQuestionToQuizComponent,
     ShareProjectComponent,
+    QuizStatisticsComponent,
+
 
 
 

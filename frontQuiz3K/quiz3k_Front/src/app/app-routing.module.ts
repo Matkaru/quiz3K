@@ -8,6 +8,7 @@ import {
   AddQuestionToQuizComponent
 } from "./pages/quiz-page/add-question-to-quiz/add-question-to-quiz.component";
 import {ShareProjectComponent} from "./pages/share-project/share-project.component";
+import {QuizStatisticsComponent} from "./pages/quiz-statistics/quiz-statistics.component";
 
 const routes: Routes = [
   { path: '', component: FirstPageComponent },
@@ -15,7 +16,9 @@ const routes: Routes = [
   { path: 'logowanie', component: LoginPageComponent},
   { path: 'quiz', component: QuizPageComponent },
   { path: 'add-question-to-quiz/:quizId/:quizName', component: AddQuestionToQuizComponent },
-  { path: 'api/share/quiz/:quizId/:quizName' , component: ShareProjectComponent}
+  { path: 'api/share/quiz/:quizId/:quizName' , component: ShareProjectComponent},
+  { path: 'quiz-statistics/:id' , component: QuizStatisticsComponent},
+
 
 ];
 
