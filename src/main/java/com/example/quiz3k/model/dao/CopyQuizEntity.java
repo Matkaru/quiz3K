@@ -12,6 +12,7 @@ public class CopyQuizEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long quizId;
+    //jakie pytanie (questionId),
 //    private Long answerQuestionId;
 
 //    private Long answerId;

@@ -8,17 +8,13 @@ import java.util.List;
 
 @Data
 public class QuizData {
-    private String email;
-
-    private Long id;
 
     private Long quizId;
-
-    private Long answerQuestionId;
-
-    private List<Long> userAnswerIdList;
+    private String email;
+    private List<SharedAnswer> userAnswerIdList;
 
     public QuizData() {
     }
 
 }
+

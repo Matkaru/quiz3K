@@ -17,12 +17,8 @@ import {CopyQuizService} from "../../service/copy-quiz.service";
 export class ShareProjectComponent implements OnInit {
   quizName: string;
   quizId: number;
-  questionQuizId: number;
   questionList: any[] = [];
   email: string;
-  userAnswer: any;
-  selectedUserAnswerId: number;
-  selectedAnswerQuestionId: number;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,7 +34,6 @@ export class ShareProjectComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.quizName = params['quizName'];
       this.quizId = params['quizId'];
-      this.questionQuizId = params['quizId'];
       this.getQuestionsByQuiz();
     });
   }
@@ -47,10 +42,14 @@ export class ShareProjectComponent implements OnInit {
 
     const quizData = {
       quizId: this.quizId,
-      questionId: this.selectedAnswerQuestionId,
+      // questionId: this.selectedAnswerQuestionId,
       email: this.email,
-      userAnswerIdList: this.questionList.map(question => (
-         question.answers.filter(answer => answer.isSelected).map(answer => answer.id)
+      userAnswerIdList: this.questionList.map(question  => ({
+        questionId: question.id,
+        answers: question.answers
+          .filter(answer => answer.isSelected)
+          .map(answer => answer.id)
+      }
       ))
     };
     console.log(quizData);
@@ -66,9 +65,10 @@ export class ShareProjectComponent implements OnInit {
   }
 
   getQuestionsByQuiz() {
-    this.questionService.getQuestionsByQuiz(this.questionQuizId).subscribe(
+    this.questionService.getQuestionsByQuiz(this.quizId)
+      .subscribe(
       (questions: Question[]) => {
-        this.questionList = questions
+        this.questionList = questions;
         this.loadAnswersForQuestions();
       },
       (error) => {
@@ -100,9 +100,6 @@ export class ShareProjectComponent implements OnInit {
     const question = this.questionList.find(q => q.id === questionId);
     if (question) {
       question.answers = answers;
-
-      this.selectedAnswerQuestionId = questionId;
-      this.selectedUserAnswerId = answers[0].id;
     }
   }
 }
