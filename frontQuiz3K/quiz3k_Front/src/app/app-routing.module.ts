@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'quiz', component: QuizPageComponent },
   { path: 'add-question-to-quiz/:quizId/:quizName', component: AddQuestionToQuizComponent },
   { path: 'api/share/quiz/:quizId/:quizName' , component: ShareProjectComponent},
-  { path: 'quiz-statistics/:id' , component: QuizStatisticsComponent},
+  { path: 'quiz-statistics/:id/:quizName' , component: QuizStatisticsComponent},
 
 
 ];

@@ -119,7 +119,7 @@ export class QuizPageComponent implements OnInit {
     this.router.navigate(['add-question-to-quiz', quizId, quizName]);
   }
 
-  shareStatistics(id) {
-    this.router.navigate(['quiz-statistics',id]);
+  shareStatistics(id, quizName: string) {
+    this.router.navigate(['quiz-statistics',id, quizName]);
   }
 }

@@ -1,10 +1,32 @@
 <h2 class="page-title">Statystyki wyników quizu</h2>
+<h2 class="quizName">Nazwa Quizu: {{ quizName }}</h2>
+<h2 class="quizName">ID: {{ quizId }}</h2>
 <header>
   <div class="right-corner">
     <button (click)="quizPage()">Powrót</button>
     <button (click)="logout()">Wyloguj</button>
   </div>
 </header>
-<div class="statistics">
-  <img src="https://www.medianauka.pl/grafika/quizy/ikony/50-fb.jpg "width="495" height="369">
+<div style="flex: 1;" class="question-list-wrapper">
+  <div style="flex: 1; padding-right: 20px;">
+    <div class="question-section">
+
+      <h2 class="list-title">Lista pytań:</h2>
+      <ol>
+        <li *ngFor="let question of questionList" class="question-list">
+          <div class="question-info">
+            <span class="question-text">{{ question.questionText }}</span>
+            <span
+              class="question-type">{{ question.questionType === 'SINGLE' ? '  (Jedna odpowiedź)' : '  (Wiele odpowiedzi)' }}</span>
+          </div>
+          <ol type="a">
+            <li *ngFor="let answer of question.answers" class="answer-list">
+              <label>
+                {{ answer.answerForTheQuestion }}
+              </label>
+            </li>
+          </ol>
+      </ol>
+    </div>
+  </div>
 </div>
