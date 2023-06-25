@@ -10,6 +10,7 @@ img {
   align-items: center;
   padding: 10px;
   background-color: #a6da67;
+
 }
 
 .header-text {
@@ -50,15 +51,15 @@ img {
   height: auto;
   min-height: 100%;
   background-color: #cae371;
+  background-size: cover;
 }
 
 .start-page-header {
   color: #9d0101;
   font-size: 60px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
-  transform: perspective(100px) rotateX(10deg);
   text-align: center;
   margin-left: 0;
+  text-shadow: 4px 4px 4px white
 }
 
 .description-container {

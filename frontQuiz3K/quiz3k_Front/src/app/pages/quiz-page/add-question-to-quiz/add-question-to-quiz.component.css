@@ -1,8 +1,10 @@
 
 .quizName {
-  font-size: 24px;
   text-align: center;
   margin-bottom: 20px;
+  color: #9d0101;
+  text-shadow: 2px 2px 4px white;
+  font-size: 30px;
 }
 
 .question-section {
@@ -94,11 +96,11 @@ select{
 button{
   margin: 10px;
   padding: 10px 20px;
-  background-color: #3693f6;
-  color: #fff;
-  border: none;
   border-radius: 5px;
   font-size: 16px;
+  border: 2px solid white;
+  background-color: dodgerblue;
+  color: white
 }
 .right-corner {
   position: absolute;
