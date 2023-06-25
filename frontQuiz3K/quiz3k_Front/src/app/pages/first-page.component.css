@@ -1,9 +1,6 @@
 button {
   margin: 10px;
   padding: 10px 20px;
-  /*background-color: #3693f6;*/
-  /*color: #fff;*/
-  /*border: none;*/
   border-radius: 5px;
   font-size: 16px;
   border: 2px solid white;
@@ -36,6 +33,7 @@ button {
   margin: 0;
   line-height: 1.5;
   color: #faf1b2;
+  font-size: 18px;
 
 }
 
@@ -58,6 +56,7 @@ button {
 }
 .description-title{
   color: #faf1b2;
+  font-size: 25px;
 }
 .aside{
   width: auto;
