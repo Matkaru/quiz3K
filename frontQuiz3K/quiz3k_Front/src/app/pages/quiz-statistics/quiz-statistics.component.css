@@ -49,11 +49,12 @@ button{
 
 .question-list {
   text-align: left;
+  margin-left: 0;
 }
 
 .question-section {
   margin: 20px auto;
-  width: 70%;
+  width: 50%;
   height: auto;
   border: 1px solid #ccc;
   padding: 10px;
@@ -65,4 +66,18 @@ button{
   color: #f32049;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
   font-size: 30px;
+}
+.wykres{
+  width: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.title-statistics{
+  text-align: center;
+  color: #f32049;
+}
+.question-list-wrapper{
+  margin-left: 0;
 }
