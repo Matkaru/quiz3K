@@ -286,5 +286,9 @@ export class AddQuestionToQuizComponent implements OnInit {
   generateLink() {
     this.generatedLink = window.location.origin + '/api/share/quiz/' + this.quizId +"/" + this.quizName;
   }
+
+  quizPage() {
+    this.router.navigate(['quiz']);
+  }
 }
 

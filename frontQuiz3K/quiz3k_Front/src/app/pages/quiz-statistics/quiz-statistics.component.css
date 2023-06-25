@@ -18,8 +18,8 @@ button{
 }
 .page-title{
   text-align: center;
-  color: #f32049;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  color: #9d0101;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-size: 50px;
 }
 .question-text {
@@ -63,8 +63,8 @@ button{
 }
 .quizName{
   text-align: center;
-  color: #f32049;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  color: #9d0101;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-size: 30px;
 }
 .wykres{
@@ -76,7 +76,7 @@ button{
 }
 .title-statistics{
   text-align: center;
-  color: #f32049;
+  color: #9d0101;
 }
 .question-list-wrapper{
   margin-left: 0;
