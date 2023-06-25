@@ -19,6 +19,8 @@ export class ShareProjectComponent implements OnInit {
   quizId: number;
   questionList: any[] = [];
   email: string;
+  isQuizSaved: boolean = false;
+  isQuestionListVisible: boolean = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -62,6 +64,8 @@ export class ShareProjectComponent implements OnInit {
           console.error('Wystąpił błąd podczas zapisywania quizu:', error);
         }
       );
+    this.isQuizSaved = true;
+    this.isQuestionListVisible = false;
   }
 
   getQuestionsByQuiz() {

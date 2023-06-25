@@ -23,6 +23,7 @@
             <li *ngFor="let answer of question.answers" class="answer-list">
               <label>
                 {{ answer.answerForTheQuestion }}
+                <span *ngIf="answer.confirmedAnswer" class="correct-answer">✔</span>
               </label>
             </li>
           </ol>

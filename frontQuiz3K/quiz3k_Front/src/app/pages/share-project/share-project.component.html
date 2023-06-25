@@ -1,6 +1,7 @@
 <h2 class="quizName">Nazwa Quizu: {{ quizName }}</h2>
 <h2 class="quizName">ID: {{ quizId }}</h2>
 <div>
+  <div [ngClass]="{'black-out': !isQuizSaved}" *ngIf="!isQuizSaved">
   <div class="email-section">
     <h3 class="email-heading">Podaj adres e-mail:</h3>
     <input
@@ -10,7 +11,7 @@
       class="email-input"
     />
     <button
-      [disabled]="!email || email.trim() === ''"
+      [disabled]="!email || email.trim() === '' "
       (click)="saveQuiz()"
       class="save-button"
     >
@@ -18,9 +19,13 @@
     </button>
   </div>
 </div>
+    <div *ngIf="isQuizSaved">
+      <p class="communicate">Twój quiz został poprawnie zapisany i wysłany.</p>
+    </div>
 <header>
 
 </header>
+  <div *ngIf="isQuestionListVisible">
 <div style="flex: 1;" class="question-list-wrapper">
   <div style="flex: 1; padding-right: 20px;">
     <div class="question-section">
@@ -44,4 +49,6 @@
       </ol>
     </div>
   </div>
+</div>
+</div>
 </div>

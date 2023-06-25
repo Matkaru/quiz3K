@@ -17,12 +17,15 @@ export class QuizStatisticsComponent implements OnInit {
   quizId: number;
   questionList: any[] = [];
 
+
   constructor(private router: Router,
               private authService: AuthService,
               private activatedRoute: ActivatedRoute,
               private questionService: QuestionService,
               private answerService: AnswerService,
-              private http: HttpClient,) {
+              private http: HttpClient,
+
+              ) {
   }
 
   logout() {
@@ -36,7 +39,7 @@ export class QuizStatisticsComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
-      this.quizId = params['quizId'];
+      this.quizId = params['id'];
       this.quizName = params['quizName'];
       this.getQuestionsByQuiz()
     });
@@ -46,6 +49,7 @@ export class QuizStatisticsComponent implements OnInit {
     this.questionService.getQuestionsByQuiz(this.quizId)
       .subscribe(
         (questions: Question[]) => {
+          console.log(questions)
           this.questionList = questions;
           this.loadAnswersForQuestions();
         },
