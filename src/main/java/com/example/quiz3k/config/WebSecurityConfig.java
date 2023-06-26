@@ -24,6 +24,7 @@ public class WebSecurityConfig {
                 .csrf(csrf -> csrf.disable());
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.cors(Customizer.withDefaults());
+        httpSecurity.headers(httpSecurityHeadersConfigurer -> httpSecurityHeadersConfigurer.frameOptions(x -> x.sameOrigin()));
         httpSecurity.authorizeHttpRequests(
                 (request -> request
                         .requestMatchers(HttpMethod.POST, "/rejestracja").permitAll()
@@ -46,6 +47,8 @@ public class WebSecurityConfig {
 //                        .requestMatchers(HttpMethod.GET, "/api/questions").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/questions/{id}").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/questions/{id}").authenticated()
+
+                        .anyRequest().authenticated()
 //
                 )
         );
