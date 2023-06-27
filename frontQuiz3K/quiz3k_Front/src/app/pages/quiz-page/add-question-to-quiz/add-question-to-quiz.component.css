@@ -143,6 +143,7 @@ button:hover{
   margin: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   background-color: #3d3d3c;
+  border-radius: 10px;
 
 }
 .question-section {
@@ -150,6 +151,7 @@ button:hover{
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   background-color: #3d3d3c;
+  border-radius: 10px;
 
 }
 .question-list-wrapper-button{
