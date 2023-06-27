@@ -10,24 +10,24 @@
 <div style="display: flex;">
   <div style="flex: 1; padding-right: 20px;">
 <div class="question-section">
-  <h3>Dodaj nowe pytanie:</h3>
+  <h3 class="qs-text">Dodaj nowe pytanie:</h3>
   <form (submit)="addQuestion()" [formGroup]="questionForm">
     <div>
-      <label>Treść pytania:</label>
+      <label class="qs-text">Treść pytania:</label>
       <textarea formControlName="questionText" required [ngClass]="{ 'is-invalid': questionForm.get('questionText').invalid && (questionForm.get('questionText').dirty || questionForm.get('questionText').touched) }"></textarea>
       <div *ngIf="questionForm.get('questionText').invalid && (questionForm.get('questionText').dirty || questionForm.get('questionText').touched)" class="invalid-feedback">
-        Uzupełnij to pole.
+        Uzupełnij to pole ⬆
       </div>
     </div>
     <div>
-      <label>Typ pytania:</label>
-      <select formControlName="questionType" required (change)="updateQuestionType()">
-        <option value="" disabled [selected]="true">Wybierz typ pytania</option>
+      <label class="qs-text">Typ pytania:</label>
+      <select formControlName="questionType" required (change)="updateQuestionType()" class="answer-window">
+        <option value="" disabled [selected]="true" class="qs-text">Wybierz typ pytania</option>
         <option value="SINGLE">Jednokrotny</option>
         <option value="MULTIPLE">Wielokrotny</option>
       </select>
       <div *ngIf="questionForm.get('questionType').invalid && (questionForm.get('questionType').dirty || questionForm.get('questionType').touched)" class="invalid-feedback">
-        Wybierz typ pytania.
+        Wybierz typ pytania ⬆
       </div>
     </div>
     <div>
@@ -39,13 +39,14 @@
       <div *ngIf="!answer.deleted">
         <div class="answer-wrapper" [formGroup]="getAnswerForm(i)">
           <input type="checkbox" formControlName="confirmedAnswer" (change)="toggleCorrectAnswer(getAnswerForm(i))" [checked]="answer">
-          <input type="text" formControlName="answerForTheQuestion" required>
+          <input type="text" formControlName="answerForTheQuestion" required class="answer-window">
           <button type="button" class="remove-answer" (click)="removeAnswer(getAnswerForm(i))">Usuń odpowiedź</button>
         </div>
       </div>
     </div>
     <button type="button" (click)="addAnswer()">Dodaj odpowiedź</button>
     <button type="submit">Zapisz pytanie</button>
+    <button type="button" (click)="cancelAddingQuestion()" >Anuluj</button>
   </form>
 </div>
 </div>
@@ -53,7 +54,7 @@
     <div style="flex: 1; padding-right: 20px;">
       <button (click)="generateLink()">Wygeneruj link do udostępnienia</button>
       <div *ngIf="generatedLink" class="link-section">
-        <label>Wygenerowany link:</label>
+        <label class="qs-text">Wygenerowany link:</label>
         <input type="text" [value]="generatedLink" readonly class="quiz-link">
       </div>
     </div>
@@ -75,7 +76,7 @@
         <div class="question-edit" *ngIf="editingQuestionId === question.id">
           <textarea [(ngModel)]="editingQuestionText"></textarea>
           <div *ngFor="let answer of editingAnswers; let i = index">
-            <input type="text" [(ngModel)]="answer.answerForTheQuestion">
+            <input type="text" [(ngModel)]="answer.answerForTheQuestion" class="answer-window">
             <input type="checkbox" [(ngModel)]="answer.confirmedAnswer">
             <button (click)="removeAnswer(answer)" class="question-list-wrapper-button">Usuń odpowiedź</button>
           </div>

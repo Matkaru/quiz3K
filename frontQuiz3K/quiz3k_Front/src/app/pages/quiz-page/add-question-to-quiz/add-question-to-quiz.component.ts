@@ -27,6 +27,7 @@ export class AddQuestionToQuizComponent implements OnInit {
   editingAnswers: any[] = [];
   generatedLink: string = '';
 
+
   newQuestion: {
     questionQuizId: string;
     id: string;
@@ -275,6 +276,10 @@ export class AddQuestionToQuizComponent implements OnInit {
         }
       );
     });
+  }
+  cancelAddingQuestion() {
+    window.location.reload();
+
   }
 
   cancelEditing() {
