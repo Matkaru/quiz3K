@@ -14,6 +14,7 @@ import {MatInputModule} from "@angular/material/input";
 import { AddQuestionToQuizComponent } from './pages/quiz-page/add-question-to-quiz/add-question-to-quiz.component';
 import {ShareProjectComponent} from "./pages/share-project/share-project.component";
 import { QuizStatisticsComponent } from './pages/quiz-statistics/quiz-statistics.component';
+import {AuthGuard} from "./pages/auth-page/auth.guard";
 
 
 @NgModule({
@@ -28,14 +29,12 @@ import { QuizStatisticsComponent } from './pages/quiz-statistics/quiz-statistics
     QuizStatisticsComponent,
 
 
-
-
   ],
   imports: [
-    BrowserModule, //dostep do przegladarki?
-    AppRoutingModule, //routing
-    HttpClientModule, //klientHttp
-    ReactiveFormsModule,  //formularze,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     FormsModule,
     MatTableModule,
     MatInputModule,
@@ -46,7 +45,7 @@ import { QuizStatisticsComponent } from './pages/quiz-statistics/quiz-statistics
     AddQuestionToQuizComponent,
     ShareProjectComponent
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

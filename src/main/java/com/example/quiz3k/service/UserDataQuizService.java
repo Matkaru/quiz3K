@@ -1,8 +1,7 @@
 package com.example.quiz3k.service;
-import com.example.quiz3k.model.dao.CopyQuizEntity;
+import com.example.quiz3k.model.dao.UserDataQuizEntity;
 import com.example.quiz3k.model.dto.QuizData;
-import com.example.quiz3k.model.dto.SharedAnswer;
-import com.example.quiz3k.repository.CopyQuizRepository;
+import com.example.quiz3k.repository.UserDataQuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,17 +9,17 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class CopyQuizService {
+public class UserDataQuizService {
 
-    private final CopyQuizRepository copyRepo;
+    private final UserDataQuizRepository copyRepo;
 
     @Autowired
-    public CopyQuizService(CopyQuizRepository copyRepo) {
+    public UserDataQuizService(UserDataQuizRepository copyRepo) {
         this.copyRepo = copyRepo;
     }
 
     public void saveQuiz(QuizData quizData) {
-        CopyQuizEntity copyQuiz = new CopyQuizEntity();
+        UserDataQuizEntity copyQuiz = new UserDataQuizEntity();
         copyQuiz.setQuizId(quizData.getQuizId());
         copyQuiz.setUserAnswerIdList(quizData.getUserAnswerIdList().stream()
                 .flatMap(x -> x.getAnswers().stream())

@@ -3,10 +3,13 @@ package com.example.quiz3k.controller;
 import com.example.quiz3k.model.UserResponse;
 import com.example.quiz3k.model.dto.User;
 import com.example.quiz3k.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.net.CacheRequest;
 import java.security.Principal;
 import java.util.List;
@@ -37,6 +40,11 @@ public class UserController {
    @GetMapping("/activate-user/{confirmation-token}")
    public void activateUser(@PathVariable("confirmation-token") String confirmationToken){
        userService.activateUser(confirmationToken);
+    }
+    @PostMapping("/logout")
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.getSession().invalidate();
+        response.setStatus(HttpServletResponse.SC_OK);
     }
 
 }

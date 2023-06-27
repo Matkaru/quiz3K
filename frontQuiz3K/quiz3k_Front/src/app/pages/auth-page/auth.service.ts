@@ -21,7 +21,7 @@ export class AuthService {
     this.currentUser = null;
 
     return this.httpClient
-      .get<any>('http://localhost:8080/api/users-user', {
+      .get<any>('http://localhost:8080/api/users', {
         headers: {Authorization: 'Basic ' + btoa(email + ':' + password)}
       })
       .pipe(
@@ -29,7 +29,7 @@ export class AuthService {
           this.currentUser = {
             email: email,
             password: password,
-            // nick: response.nick
+
           };
           localStorage.setItem('userData', JSON.stringify(this.currentUser));
         })

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CopyQuizService {
+export class UserDataQuizService {
   private apiUrl = 'http://localhost:8080/api/share/quiz';
 
   constructor(private http: HttpClient) { }

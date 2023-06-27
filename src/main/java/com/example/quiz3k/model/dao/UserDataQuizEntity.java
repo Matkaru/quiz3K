@@ -6,7 +6,7 @@ import java.util.*;
 @Table(name = "copy_quiz")
 @Entity
 @Data
-public class CopyQuizEntity {
+public class UserDataQuizEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

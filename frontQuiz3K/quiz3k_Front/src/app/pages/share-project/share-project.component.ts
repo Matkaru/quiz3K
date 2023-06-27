@@ -5,7 +5,7 @@ import {QuestionService} from "../../service/question.service";
 import {AnswerService} from "../../service/answer.service";
 import {Answer, Question} from "../quiz-page/add-question-to-quiz/question.model";
 import {HttpClient} from "@angular/common/http";
-import {CopyQuizService} from "../../service/copy-quiz.service";
+import {UserDataQuizService} from "../../service/user-data-quiz.service";
 
 
 
@@ -29,7 +29,7 @@ export class ShareProjectComponent implements OnInit {
     private answerService: AnswerService,
     private router: Router,
     private http: HttpClient,
-    private copyQuizService: CopyQuizService
+    private userDataQuizService: UserDataQuizService
   ) {}
 
   ngOnInit() {
@@ -44,7 +44,6 @@ export class ShareProjectComponent implements OnInit {
 
     const quizData = {
       quizId: this.quizId,
-      // questionId: this.selectedAnswerQuestionId,
       email: this.email,
       userAnswerIdList: this.questionList.map(question  => ({
         questionId: question.id,
@@ -55,7 +54,7 @@ export class ShareProjectComponent implements OnInit {
       ))
     };
     console.log(quizData);
-    this.copyQuizService.saveQuiz(quizData)
+    this.userDataQuizService.saveQuiz(quizData)
       .subscribe(
         (response) => {
           console.log('Quiz został zapisany na serwerze:', response);
