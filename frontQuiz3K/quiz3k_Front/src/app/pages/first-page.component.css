@@ -3,27 +3,20 @@ button {
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 16px;
-  border: 2px solid white;
+  border: 2px solid #faf1b2;
   background-color: #464545;
-  color: white;
+  color: #faf1b2;
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
 button:hover{
   background-color: #999999;
 }
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: #69ea14;
-}
+
 .buttons {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-
 }
 
 .description {

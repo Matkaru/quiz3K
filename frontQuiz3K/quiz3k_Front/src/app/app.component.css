@@ -4,9 +4,8 @@ img {
   height: auto;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
   cursor: pointer;
+  border-radius: 10px;
 }
-
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -61,8 +60,8 @@ img {
 .start-page-header {
   color: #faf1b2;
   font-size: 60px;
-  text-align: center;
-  margin-left: 0;
+  text-align:left;
+  margin-left: 38%;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.9);
 }
 

@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 }
 
 .right-corner {
@@ -34,18 +33,25 @@ button{
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 16px;
-  border: 2px solid white;
-  background-color: dodgerblue;
-  color: white
+  border: 2px solid #faf1b2;
+  background-color: #464545;
+  color: #faf1b2;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+button:hover{
+  background-color: #999999;
 }
 .table-button{
   margin: 10px;
   padding: 10px 20px;
-  background-color: #3693f6;
-  color: #fff;
-  border: none;
   border-radius: 5px;
   font-size: 12px;
+  border: 2px solid #faf1b2;
+  background-color: #464545;
+  color: #faf1b2;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 .action-column{
   position: absolute;
@@ -54,21 +60,37 @@ button{
 }
 .text-right{
   text-align: right;
+  color: #faf1b2;
 }
 
 .list-box{
   margin: 20px;
-  border: 1px solid #000;
+  border: 1px solid #faf1b2;
   padding: 10px;
-  background-color:beige;
+  background-color:#6c6c6b;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
 }
 .list-title{
-  color: #604615;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  color: #faf1b2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
 .page-title{
-  color: #9d0101;
-  text-shadow: 2px 2px 4px white;
+  color: #faf1b2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
   font-size: 50px;
+}
+.set-quiz-name{
+  border-radius: 5px;
+}
+.table-quiz-name{
+  color: #faf1b2;
+}
+.confirm-delete-message{
+  color: #faf1b2;
+}
+.empty-list-message{
+  color: #faf1b2;
+  font-size: 18px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
