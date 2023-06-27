@@ -7,6 +7,7 @@ import {AuthService} from "../auth-page/auth.service";
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
+
 })
 export class LoginPageComponent {
   email: string = '';

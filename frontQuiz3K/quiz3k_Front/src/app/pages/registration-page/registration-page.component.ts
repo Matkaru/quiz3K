@@ -27,15 +27,14 @@ export class RegistrationPageComponent implements OnInit{
 
   registerUser() {
 
-    if (this.userType === '') {
-      this.errorMessage = 'Wybierz typ użytkownika.';
+    if (!this.email || !this.password) {
+      this.errorMessage = 'Uzupełnij wszystkie pola';
       return;
     }
 
-    let user: { password: string; userType: string; email: string } = {
+    let user: { password: string;  email: string } = {
       email: this.email,
       password: this.password,
-      userType: this.userType,
     };
 
     this.userService.getAllUsers(user).subscribe(users => {

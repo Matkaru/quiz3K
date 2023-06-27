@@ -3,13 +3,16 @@ img {
   width: 150px;
   height: auto;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  cursor: pointer;
 }
+
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #a6da67;
+  background: transparent;
 
 }
 
@@ -52,14 +55,15 @@ img {
   min-height: 100%;
   background-color: #cae371;
   background-size: cover;
+  background-image: url('src/assets/nature.jpg');
 }
 
 .start-page-header {
-  color: #9d0101;
+  color: #faf1b2;
   font-size: 60px;
   text-align: center;
   margin-left: 0;
-  text-shadow: 4px 4px 4px white
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.9);
 }
 
 .description-container {
@@ -75,7 +79,7 @@ img {
 }
 
 footer {
-  background-color: #cae371;
+  background: transparent;
   padding: 20px;
   text-align: center;
   position: fixed;
@@ -83,4 +87,10 @@ footer {
   bottom: 0;
   width: 100%;
 }
+
+.footer-text{
+  color: #faf1b2;
+  font-family: Roboto, serif;
+}
+
 
