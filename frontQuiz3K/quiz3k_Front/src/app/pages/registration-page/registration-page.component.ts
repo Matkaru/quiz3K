@@ -6,12 +6,13 @@ import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth-page/auth.service";
 import {timer} from "rxjs";
 
+
 @Component({
   selector: 'app-registration-page',
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.css']
 })
-export class RegistrationPageComponent implements OnInit{
+export class RegistrationPageComponent implements OnInit {
 
   errorMessage: string | null = null;
   email: string = '';
@@ -32,7 +33,7 @@ export class RegistrationPageComponent implements OnInit{
       return;
     }
 
-    let user: { password: string;  email: string } = {
+    let user: { password: string; email: string } = {
       email: this.email,
       password: this.password,
     };
@@ -44,11 +45,11 @@ export class RegistrationPageComponent implements OnInit{
       } else {
         this.authService.logout();
         this.authService.createNewUser(user).subscribe(() => {
-          this.showSuccessMessage = true;
-          timer(3000).subscribe(() => {
-            this.showSuccessMessage = false;
-            this.router.navigate(['/', 'logowanie']);
-          });
+            this.showSuccessMessage = true;
+            timer(3000).subscribe(() => {
+              this.showSuccessMessage = false;
+              this.router.navigate(['/', 'logowanie']);
+            });
           },
           (error: any) => {
             this.errorMessage = error;
@@ -57,7 +58,44 @@ export class RegistrationPageComponent implements OnInit{
     });
   }
 
+  changeFact() {
+    // Definiowanie tablicy z różnymi ciekawostkami
+    var facts = [
+      "Sokół Wędrowny jest najszybszym stworzeniem na świecie. W locie pikującym może osiągnąć prędkość zbliżoną do 360 km/h.",
+      "Korea Północna i Kuba to jedyne miejsca, w których nie można kupić Coca-Coli.",
+      "Środkowy palec Galileusza jest przechowywany w Muzeum Nauki we Florencji.",
+      "Hiszpańskie słowo „esposas” oznacza zarówno „kajdanki”, jak i „żony”",
+      "Kiedy bierzesz gorącą kąpiel, spalasz tyle kalorii, ile byś spalił na 30-minutowym spacerze."
+    ];
+
+    // Definiowanie tablicy z różnymi ścieżkami do obrazów
+    var images = [
+      "assets/sokol.jpg",
+      "i.ebayimg.com/images/g/5YgAAOSwCU1Yzv1a/s-l500.jpg",
+      "pobierak.jeja.pl/images/5/b/1/280438_srodkowy-palec-galileusza.jpg",
+      "dolnoslaska.policja.gov.pl/dokumenty/zalaczniki/411/411-83562.jpg",
+      "img.kawusia.pl/images/0/e/0e912eca263c9f7d63ae958cd646c936.jpg"
+    ];
+
+    // Losowe wybieranie ciekawostki i obrazu przy ładowaniu strony
+    var randomIndex = Math.floor(Math.random() * facts.length);
+    document.getElementById("randomFact").innerHTML = facts[randomIndex];
+    document.getElementById("randomImage").setAttribute("src", images[randomIndex]);
+
+    // Funkcja do dynamicznej zmiany ciekawostki i obrazu przy kliknięciu
+    var changeFact = () => {
+      var newIndex = Math.floor(Math.random() * facts.length);
+      while (newIndex === randomIndex) {
+        newIndex = Math.floor(Math.random() * facts.length);
+      }
+      randomIndex = newIndex;
+      document.getElementById("randomFact").innerHTML = facts[randomIndex];
+      document.getElementById("randomImage").setAttribute("src", images[randomIndex]);
+    };
+  }
+
   ngOnInit() {
+    this.changeFact();
     this.signupForm = new FormGroup({
       'userData': new FormGroup({
         'mail': new FormControl(),
@@ -69,3 +107,5 @@ export class RegistrationPageComponent implements OnInit{
     );
   }
 }
+
+
