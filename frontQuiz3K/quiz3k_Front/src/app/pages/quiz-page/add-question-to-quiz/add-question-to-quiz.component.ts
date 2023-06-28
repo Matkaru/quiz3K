@@ -26,6 +26,7 @@ export class AddQuestionToQuizComponent implements OnInit {
   editingQuestionType: string = '';
   editingAnswers: any[] = [];
   generatedLink: string = '';
+  formSubmitted: boolean = false;
 
 
   newQuestion: {
@@ -93,7 +94,7 @@ export class AddQuestionToQuizComponent implements OnInit {
       ] as FormGroup;
   }
 
-  addQuestion() {
+  addQuestion(buttonClicked: boolean) {
     if (this.questionForm.invalid) {
       return;
     }
@@ -123,7 +124,9 @@ export class AddQuestionToQuizComponent implements OnInit {
     } else {
       console.log('Wypełnij wszystkie pola');
     }
-
+    if (buttonClicked) {
+      this.formSubmitted = true;
+    }
   }
 
   createAnswers(questionId: number) {
@@ -227,6 +230,7 @@ export class AddQuestionToQuizComponent implements OnInit {
       }
     );
   }
+
   editQuestion(question: Question) {
     this.editingQuestionId = question.id;
     this.editingQuestionText = question.questionText;
@@ -277,6 +281,7 @@ export class AddQuestionToQuizComponent implements OnInit {
       );
     });
   }
+
   cancelAddingQuestion() {
     window.location.reload();
 
@@ -288,12 +293,28 @@ export class AddQuestionToQuizComponent implements OnInit {
     this.editingQuestionType = '';
     this.editingAnswers = [];
   }
+
   generateLink() {
-    this.generatedLink = window.location.origin + '/api/share/quiz/' + this.quizId +"/" + this.quizName;
+    this.generatedLink = window.location.origin + '/api/share/quiz/' + this.quizId + "/" + this.quizName;
   }
 
   quizPage() {
     this.router.navigate(['quiz']);
   }
-}
 
+  isAnswerProvided() {
+    const answers = this.questionForm.get('answers') as FormArray;
+
+    for (let i = 0; i < answers.length; i++) {
+      const answer = answers.at(i);
+      const answerForTheQuestion = answer.get('answerForTheQuestion').value;
+      const confirmedAnswer = answer.get('confirmedAnswer').value;
+
+      if (answerForTheQuestion.trim() !== '' && confirmedAnswer) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+}

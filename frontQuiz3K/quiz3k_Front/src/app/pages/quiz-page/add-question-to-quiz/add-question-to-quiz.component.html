@@ -11,7 +11,7 @@
   <div style="flex: 1; padding-right: 20px;">
 <div class="question-section">
   <h3 class="qs-text">Dodaj nowe pytanie:</h3>
-  <form (submit)="addQuestion()" [formGroup]="questionForm">
+  <form (submit)="addQuestion(true)" [formGroup]="questionForm" #formDir="ngForm">
     <div>
       <label class="qs-text">Treść pytania:</label>
       <textarea formControlName="questionText" required [ngClass]="{ 'is-invalid': questionForm.get('questionText').invalid && (questionForm.get('questionText').dirty || questionForm.get('questionText').touched) }"></textarea>
@@ -22,7 +22,7 @@
     <div>
       <label class="qs-text">Typ pytania:</label>
       <select formControlName="questionType" required (change)="updateQuestionType()" class="answer-window">
-        <option value="" disabled [selected]="true" class="qs-text">Wybierz typ pytania</option>
+        <option value="" disabled [selected]="true" >Wybierz typ pytania</option>
         <option value="SINGLE">Jednokrotny</option>
         <option value="MULTIPLE">Wielokrotny</option>
       </select>
@@ -47,6 +47,9 @@
     <button type="button" (click)="addAnswer()">Dodaj odpowiedź</button>
     <button type="submit">Zapisz pytanie</button>
     <button type="button" (click)="cancelAddingQuestion()" >Anuluj</button>
+    <div *ngIf="questionForm.get('questionType').invalid || !isAnswerProvided() && ((questionForm.get('questionType').dirty || questionForm.get('questionType').touched))" class="invalid-feedback">
+      Uzupełnij wszystkie pola formularza ⬆
+    </div>
   </form>
 </div>
 </div>
