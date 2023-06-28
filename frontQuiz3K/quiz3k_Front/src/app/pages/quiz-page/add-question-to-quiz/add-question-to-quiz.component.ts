@@ -94,7 +94,7 @@ export class AddQuestionToQuizComponent implements OnInit {
       ] as FormGroup;
   }
 
-  addQuestion(buttonClicked: boolean) {
+  addQuestion() {
     if (this.questionForm.invalid) {
       return;
     }
@@ -123,9 +123,6 @@ export class AddQuestionToQuizComponent implements OnInit {
       );
     } else {
       console.log('Wypełnij wszystkie pola');
-    }
-    if (buttonClicked) {
-      this.formSubmitted = true;
     }
   }
 
@@ -166,16 +163,6 @@ export class AddQuestionToQuizComponent implements OnInit {
     this.answers.push(newAnswerFormGroup.value);
   }
 
-  toggleCorrectAnswer(answerFormGroup: FormGroup) {
-    const answerIndex = (this.questionForm.get('answers') as FormArray).controls.findIndex(
-      (control) => control === answerFormGroup
-    );
-
-    const answerControl = this.getAnswerForm(answerIndex);
-    const answer = this.newQuestion.answers[answerIndex];
-
-    answerControl.get('confirmedAnswer').setValue(!answer.confirmedAnswer);
-  }
 
   removeAnswer(answerFormGroup: FormGroup) {
     const answersArray = this.questionForm.get('answers') as FormArray;

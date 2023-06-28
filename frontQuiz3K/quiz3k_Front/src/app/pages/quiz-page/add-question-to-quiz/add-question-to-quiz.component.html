@@ -11,7 +11,7 @@
   <div style="flex: 1; padding-right: 20px;">
 <div class="question-section">
   <h3 class="qs-text">Dodaj nowe pytanie:</h3>
-  <form (submit)="addQuestion(true)" [formGroup]="questionForm" #formDir="ngForm">
+  <form (submit)="addQuestion()" [formGroup]="questionForm" #formDir="ngForm">
     <div>
       <label class="qs-text">Treść pytania:</label>
       <textarea formControlName="questionText" required [ngClass]="{ 'is-invalid': questionForm.get('questionText').invalid && (questionForm.get('questionText').dirty || questionForm.get('questionText').touched) }"></textarea>
@@ -38,7 +38,7 @@
     <div *ngFor="let answer of newQuestion.answers; let i = index">
       <div *ngIf="!answer.deleted">
         <div class="answer-wrapper" [formGroup]="getAnswerForm(i)">
-          <input type="checkbox" formControlName="confirmedAnswer" (change)="toggleCorrectAnswer(getAnswerForm(i))" [checked]="answer">
+          <input type="checkbox" formControlName="confirmedAnswer"  [checked]="getAnswerForm(i).get('confirmedAnswer').value">
           <input type="text" formControlName="answerForTheQuestion" required class="answer-window">
           <button type="button" class="remove-answer" (click)="removeAnswer(getAnswerForm(i))">Usuń odpowiedź</button>
         </div>
