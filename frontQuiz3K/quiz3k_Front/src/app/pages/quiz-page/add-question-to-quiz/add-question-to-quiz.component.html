@@ -45,9 +45,9 @@
       </div>
     </div>
     <button type="button" (click)="addAnswer()">Dodaj odpowiedź</button>
-    <button type="submit">Zapisz pytanie</button>
+    <button type="submit" [disabled]="!isAnswerProvided()">Zapisz pytanie</button>
     <button type="button" (click)="cancelAddingQuestion()" >Anuluj</button>
-    <div *ngIf="questionForm.get('questionType').invalid || !isAnswerProvided() && ((questionForm.get('questionType').dirty || questionForm.get('questionType').touched))" class="invalid-feedback">
+    <div *ngIf="(questionForm.get('questionType').invalid || !isAnswerProvided()) && (questionForm.get('questionType').dirty || questionForm.get('questionType').touched)" class="invalid-feedback">
       Uzupełnij wszystkie pola formularza ⬆
     </div>
   </form>
