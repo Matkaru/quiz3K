@@ -4,35 +4,30 @@
   <meta charset="UTF-8">
   <title>registration-page</title>
 </head>
-<body>
+<body onload="changeFact()">
 <div class="right-corner">
-<button routerLink="/logowanie">Logowanie</button>
+  <button routerLink="/logowanie">Logowanie</button>
 </div>
 <div class="form-wrapper">
-<form> <div class="form-title">Formularz rejestracyjny</div>
-  <br>
-  <input type="text" name="email" [(ngModel)]="email" placeholder="Email"  >
-  <input type="password" name="password" [(ngModel)]="password" placeholder="Hasło">
-  <br>
-  <button (click)="registerUser()" class="register-button">Zarejestruj</button>
-  <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
-  <div class="error-message" *ngIf="userExists">Użytkownik już istnieje - zaloguj się</div>
-  <div class="success-message" *ngIf="showSuccessMessage">Użytkownik został poprawnie zarejestrowany. Za chwilę zostaniesz przekierowany na stronę logowania.</div>
-</form>
+  <form>
+    <div class="form-title">Formularz rejestracyjny</div>
+    <br>
+    <input type="text" name="email" [(ngModel)]="email" placeholder="Email">
+    <input type="password" name="password" [(ngModel)]="password" placeholder="Hasło">
+    <br>
+    <button (click)="registerUser()" class="register-button">Zarejestruj</button>
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+    <div class="error-message" *ngIf="userExists">Użytkownik już istnieje - zaloguj się</div>
+    <div class="success-message" *ngIf="showSuccessMessage">Użytkownik został poprawnie zarejestrowany. Za chwilę zostaniesz przekierowany na stronę logowania.</div>
+  </form>
 </div>
-<body onload="changeFact()">
 <div class="ciekawostka">
   <div class="ciek-text">Ciekawostka:</div>
-
   <br>
   <div class="text" id="randomFact">Sokół Wędrowny jest najszybszym stworzeniem na świecie. W locie pikującym może osiągnąć prędkość zbliżoną do 360 km/h.</div>
   <img src="assets/sokol.jpg" class="sokol" id="randomImage">
-
-  </div>
-
-</body>
+</div>
 </body>
 </html>
-
 
 
