@@ -32,6 +32,7 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/quiz/{id}").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/users/info").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/users-user").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/answers").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/questions/{id}").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/answers/{id}").authenticated()
@@ -39,6 +40,8 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/questions").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/questions/{id}").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/questions/{id}").authenticated()
+//                        .requestMatchers(HttpMethod.POST, "/login").permitAll()
+
 
 
                         .anyRequest().authenticated()
@@ -59,7 +62,7 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/questions")
                 .requestMatchers(HttpMethod.GET, "/api/answers")
                 .requestMatchers(HttpMethod.POST, "/api/share/quiz/*")
-                .requestMatchers(HttpMethod.POST, "/logownie");
+                .requestMatchers(HttpMethod.POST, "/api/login");
     }
 
     @Bean
