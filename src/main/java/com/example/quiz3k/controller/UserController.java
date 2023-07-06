@@ -35,7 +35,8 @@ public class UserController {
    }
    @GetMapping("/users-user")
    public UserResponse getUser(Principal principal) {
-       return userService.getUser(principal.getName());
+       String userName = principal.getName();
+       return userService.getUser(userName);
    }
    @GetMapping("/activate-user/{confirmation-token}")
    public void activateUser(@PathVariable("confirmation-token") String confirmationToken){
