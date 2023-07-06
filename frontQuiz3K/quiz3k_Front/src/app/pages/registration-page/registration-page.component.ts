@@ -71,10 +71,11 @@ export class RegistrationPageComponent implements OnInit {
     // Definiowanie tablicy z różnymi ścieżkami do obrazów
     var images = [
       "assets/sokol.jpg",
-      "assets/cola.jpg",
-      "assets/srodkowyPalec.jpg",
-      "assets/kajdanyMilosci.jpg",
-      "assets/HOT.jpg"
+
+      "assets/s-l500.jpg",
+      "assets/palec.JPG",
+      "assets/kajdanki.jpg",
+      "assets/kapiel.JPG"
     ];
 
     // Losowe wybieranie ciekawostki i obrazu przy ładowaniu strony
