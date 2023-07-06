@@ -71,6 +71,7 @@ export class RegistrationPageComponent implements OnInit {
     // Definiowanie tablicy z różnymi ścieżkami do obrazów
     var images = [
       "assets/sokol.jpg",
+
       "assets/s-l500.jpg",
       "assets/palec.JPG",
       "assets/kajdanki.jpg",
@@ -92,6 +93,7 @@ export class RegistrationPageComponent implements OnInit {
       document.getElementById("randomFact").innerHTML = facts[randomIndex];
       document.getElementById("randomImage").setAttribute("src", images[randomIndex]);
     };
+
   }
 
   ngOnInit() {
