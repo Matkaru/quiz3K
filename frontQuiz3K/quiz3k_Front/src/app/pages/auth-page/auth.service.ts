@@ -21,7 +21,7 @@ export class AuthService {
     this.currentUser = null;
 
     return this.httpClient
-      .get<any>('http://localhost:8080/api/users', {
+      .get<any>('http://localhost:8080/api/users-user', {
         headers: {Authorization: 'Basic ' + btoa(email + ':' + password)}
       })
       .pipe(

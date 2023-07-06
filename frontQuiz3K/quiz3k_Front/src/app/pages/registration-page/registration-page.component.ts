@@ -71,10 +71,10 @@ export class RegistrationPageComponent implements OnInit {
     // Definiowanie tablicy z różnymi ścieżkami do obrazów
     var images = [
       "assets/sokol.jpg",
-      "i.ebayimg.com/images/g/5YgAAOSwCU1Yzv1a/s-l500.jpg",
-      "pobierak.jeja.pl/images/5/b/1/280438_srodkowy-palec-galileusza.jpg",
-      "dolnoslaska.policja.gov.pl/dokumenty/zalaczniki/411/411-83562.jpg",
-      "img.kawusia.pl/images/0/e/0e912eca263c9f7d63ae958cd646c936.jpg"
+      "assets/s-l500.jpg",
+      "assets/palec.JPG",
+      "assets/kajdanki.jpg",
+      "assets/kapiel.JPG"
     ];
 
     // Losowe wybieranie ciekawostki i obrazu przy ładowaniu strony
