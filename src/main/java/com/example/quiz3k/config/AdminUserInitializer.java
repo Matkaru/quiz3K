@@ -28,6 +28,12 @@ public class AdminUserInitializer implements CommandLineRunner {
     private String adminName;
     @Value("${spring.security.user.password}")
     private String adminPassword;
+    @Value("${app.user.tester.name}")
+    private String testerName;
+
+    @Value("${app.user.tester.password}")
+    private String testerPassword;
+
 
 
     @Override
@@ -43,5 +49,16 @@ public class AdminUserInitializer implements CommandLineRunner {
         );
         userEntity.setUserType(UserType.ADMIN);
         userRepository.save(userEntity);
+
+        UserEntity testerEntity = new UserEntity();
+        testerEntity.setEmail(testerName);
+        testerEntity.setPassword(passwordEncoder.encode(testerPassword));
+        testerEntity.setAuthorities(authorityRepository
+                .findByLogin("USER")
+                .map(Collections::singletonList)
+                .orElseThrow()
+        );
+        testerEntity.setUserType(UserType.USER);
+        userRepository.save(testerEntity);
     }
 }
